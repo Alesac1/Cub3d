@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "get_next_line.h": "c",
+        "unistd.h": "c",
+        "*.tcc": "c",
+        "random": "c",
+        "mlx.h": "c",
+        "cmath": "c"
+    }
+}
