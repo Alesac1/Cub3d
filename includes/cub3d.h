@@ -176,7 +176,8 @@ void				close_all(t_game *game, int i);
 void				init_game(t_game *game);
 int					game_loop(t_game *game);
 void				set_vars(t_game *game);
-unsigned int	get_pixel(t_img *img, int x, int y);
+double				ft_double(int b, double t, double f);
+unsigned int		get_pixel(t_img *img, int x, int y);
 
 
 #endif

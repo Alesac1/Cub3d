@@ -86,6 +86,7 @@ void	check_distance(t_walls *data, char **map)
 		{
 			data->side_dist_x += data->delta_x;
 			data->map_x += data->step_x;
+
 			data->side = 0;
 		}
 		else
