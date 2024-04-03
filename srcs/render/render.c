@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
-
+#include "../../includes/cub3d.h"
 void	render_floor_ceiling(t_game *game)
 {
 	int	y;

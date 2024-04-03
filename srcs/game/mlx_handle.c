@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
-
+#include "../../includes/cub3d.h"
 int	click_x(t_game *game)
 {
 	mlx_destroy_image(game->mlx.mlx, game->mlx.no.img);

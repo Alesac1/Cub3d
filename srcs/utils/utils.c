@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
-
+#include "../../includes/cub3d.h"
 double	ft_double(int b, double t, double f)
 {
 	if (b)

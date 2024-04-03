@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
-
+#include "../../includes/cub3d.h"
 int	game_loop(t_game *game)
 {
 	if (game->moves.w == 1 || game->moves.s == 1)

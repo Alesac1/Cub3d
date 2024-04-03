@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
-
+#include "../../includes/cub3d.h"
 int check_exts(char *map)
 {
 	if (map[ft_strlen(map) - 1] == 'b' && map[ft_strlen(map) - 2] == 'u' 

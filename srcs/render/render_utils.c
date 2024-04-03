@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
-
+#include "../../includes/cub3d.h"
 unsigned int	get_pixel(t_img *img, int x, int y)
 {
 	char	*dest;

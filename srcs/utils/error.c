@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
-
+#include "../../includes/cub3d.h"
 int	print_error(char *str, t_game *game, int i)
 {
 	printf("%s", str);

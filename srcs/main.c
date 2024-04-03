@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
 void	start_game(t_game *game)
 {
 	mlx_hook(game->mlx.window, 17, 0, &click_x, game);

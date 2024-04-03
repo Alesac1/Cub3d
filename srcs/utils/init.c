@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
-
+#include "../../includes/cub3d.h"
 void	set_vars(t_game *game)
 {
 	game->mlx.pos_x = game->spawn.x + 0.5;

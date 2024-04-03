@@ -18,18 +18,18 @@ LIBFT = ./includes/libft/libft.a
 NAME := cub3d
 
 SRCS := srcs/main.c \
-		srcs/check_args.c \
-		srcs/check_map_utils.c \
-		srcs/check_map.c \
-		srcs/check.c \
-		srcs/error.c \
-		srcs/game.c \
-		srcs/init.c \
-		srcs/mlx_handle.c \
-		srcs/move.c \
-		srcs/render_utils.c \
-		srcs/render.c \
-		srcs/utils.c \
+		srcs/check/check_args.c \
+		srcs/check/check_map_utils.c \
+		srcs/check/check_map.c \
+		srcs/check/check.c \
+		srcs/utils/error.c \
+		srcs/game/game.c \
+		srcs/utils/init.c \
+		srcs/game/mlx_handle.c \
+		srcs/render/move.c \
+		srcs/render/render_utils.c \
+		srcs/render/render.c \
+		srcs/utils/utils.c \
         includes/get_next_line/get_next_line.c \
         includes/get_next_line/get_next_line_utils.c
 
