@@ -49,7 +49,7 @@ int	handle_keyrelease(int keycode, t_game *game)
 int	handle_keypress(int keycode, t_game *game)
 {
 	if (keycode == 53)
-		close_all(game, 0);
+		click_x(game);
 	handle_movement(keycode, game);
 	if (keycode == XK_Left)
 	{

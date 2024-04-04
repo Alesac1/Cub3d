@@ -25,10 +25,10 @@ void	close_all(t_game *game, int r)
 
 	if (r == 0)
 		exit(0);
-	free(game->path.east);
 	free(game->path.north);
-	free(game->path.west);
+	free(game->path.east);
 	free(game->path.south);
+	free(game->path.west);
 	free(game->path.cealing);
 	free(game->path.floor);
 	free(game->path.file_name);

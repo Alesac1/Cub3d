@@ -12,16 +12,16 @@
 
 #include "../../includes/cub3d.h"
 
-void check_args(t_game *game, int argc, const char **argv, int *fd)
+void	check_args(t_game *game, int argc, const char **argv, int *fd)
 {
-	int map_counter;
+	int	map_counter;
 
 	map_counter = 0;
-    if (argc != 2 || check_exts((char *)argv[1]))
+	if (argc != 2 || check_exts((char *)argv[1]))
 		print_error("Error! invalid or missing map!\n", game, 0);
 	game->path.file_name = ft_strdup((char *)argv[1]);
 	*fd = open(game->path.file_name, O_RDONLY);
-    if (*fd == -1)
+	if (*fd == -1)
 		print_error("Error! Wrong path!\n", game, 0);
 	init_struct(game);
 	if (!alloc_args(game, fd, &map_counter))
@@ -33,7 +33,7 @@ void check_args(t_game *game, int argc, const char **argv, int *fd)
 
 int	alloc_args(t_game *game, int *fd, int *map_counter)
 {
-	char *line;
+	char	*line;
 
 	line = get_next_line(*fd);
 	(*map_counter)++;
@@ -42,18 +42,18 @@ int	alloc_args(t_game *game, int *fd, int *map_counter)
 		if (line[0] == '\n')
 		{
 			line = next_line(&line, fd, map_counter);
-			continue;
+			continue ;
 		}
 		pop_args(line, game);
 		if (full_check(game))
-			break;
+			break ;
 		free(line);
 		line = get_next_line(*fd);
 		(*map_counter)++;
 	}
 	check_params(game);
 	free(line);
-	return(1);
+	return (1);
 }
 
 void	pop_args(char *line, t_game *game)
@@ -82,7 +82,7 @@ int	full_check(t_game *game)
 				if (game->path.south != DEFAULT)
 					if (game->path.cealing != DEFAULT)
 						if (game->path.floor != DEFAULT)
-								return(1);
+								return(1) ;
 	return (0);
 }
 

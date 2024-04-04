@@ -157,7 +157,7 @@ int					alloc_args(t_game *game, int *fd, int *map_counter);
 int					full_check(t_game *game);
 void				pop_args(char *line, t_game *game);
 int					print_error(char *str, t_game *game, int i);
-void                init_struct(t_game *game);
+void				init_struct(t_game *game);
 char				*next_line(char **line, int *fd, int *map_counter);
 void				free_rgb(char **rgb);
 char				*skip_empty_lines(t_game *game, char *line, int *fd, int *map_counter);
@@ -178,6 +178,7 @@ int					game_loop(t_game *game);
 void				set_vars(t_game *game);
 double				ft_double(int b, double t, double f);
 unsigned int		get_pixel(t_img *img, int x, int y);
+void				init_mlx(t_game *game);
 
 
 #endif

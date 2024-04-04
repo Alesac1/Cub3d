@@ -5,6 +5,7 @@
         "*.tcc": "c",
         "random": "c",
         "mlx.h": "c",
-        "cmath": "c"
+        "cmath": "c",
+        "cub3d.h": "c"
     }
 }

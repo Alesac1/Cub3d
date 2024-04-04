@@ -13,7 +13,7 @@
 #include "../../includes/cub3d.h"
 int	print_error(char *str, t_game *game, int i)
 {
-	printf("%s", str);
+	ft_putstr_fd(str, 2);
 	close_all(game, i);
 	return(0);
 }

@@ -23,14 +23,12 @@ void	set_vars(t_game *game)
 	set_pos(game);
 	game->moves.rot_speed = 0;
 	game->moves.move_speed = 0;
-	game->mlx.mlx = mlx_init();
-	game->mlx.img.img = mlx_new_image(game->mlx.mlx, SCREENWIDTH, SCREENHEIGHT);
-	game->mlx.img.addr = mlx_get_data_addr(game->mlx.img.img,
-			&game->mlx.img.bits_per_pixel, &game->mlx.img.line_length,
-			&game->mlx.img.endian);
-	game->mlx.window = mlx_new_window(game->mlx.mlx, SCREENWIDTH, SCREENHEIGHT, "CUB'TRE'D");
-	mlx_put_image_to_window(game->mlx.mlx, game->mlx.window, game->mlx.img.img,
-		0, 0);
+	game->moves.w = 0;
+	game->moves.a = 0;
+	game->moves.s = 0;
+	game->moves.d = 0;
+	game->moves.l = 0;
+	game->moves.r = 0;
 }
 
 void	load_imgs(t_game *game)
@@ -59,11 +57,24 @@ void	load_imgs(t_game *game)
 	get_addresses(game);
 }
 
+void	init_mlx(t_game *game)
+{
+	game->mlx.mlx = mlx_init();
+	game->mlx.img.img = mlx_new_image(game->mlx.mlx, SCREENWIDTH, SCREENHEIGHT);
+	game->mlx.img.addr = mlx_get_data_addr(game->mlx.img.img,
+			&game->mlx.img.bits_per_pixel, &game->mlx.img.line_length,
+			&game->mlx.img.endian);
+	game->mlx.window = mlx_new_window(game->mlx.mlx, SCREENWIDTH,
+			SCREENHEIGHT, "CUB'TRE'D");
+	mlx_put_image_to_window(game->mlx.mlx, game->mlx.window, game->mlx.img.img,
+		0, 0);
+}
+
 void	init_game(t_game *game)
 {
 	set_vars(game);
+	init_mlx(game);
 	load_imgs(game);
-	init_struct(game);
 	//render_things(game);
 }
 
@@ -78,12 +89,6 @@ void	init_struct(t_game *game)
 	game->path.floor = DEFAULT;
 	game->path.width = DEFAULT;
 	game->path.height = DEFAULT;
-	game->moves.w = 0;
-	game->moves.a = 0;
-	game->moves.s = 0;
-	game->moves.d = 0;
-	game->moves.l = 0;
-	game->moves.r = 0;
 }
 
 
