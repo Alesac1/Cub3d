@@ -33,7 +33,7 @@ void pop_map(t_game *game, int *fd, int *map_counter)
 		game->map[i] = line;
 		line = get_next_line(*fd);
 		if (!line || line[0] == '\n')
-			break;
+			break ;
 		i++;
 	}
 	close(*fd);
@@ -41,13 +41,12 @@ void pop_map(t_game *game, int *fd, int *map_counter)
 		invalid_map_error(game, line);
 }
 
-void check_map(t_game *game, char **map)
+void	check_map(t_game *game, char **map)
 {
-	int i;
-	int x;
+	int	i;
+	int	x;
 
 	i = 0;
-	
 	x = 0;
 	realloc_map(game);
 	check_left_right(game, game->map);
@@ -56,7 +55,7 @@ void check_map(t_game *game, char **map)
 	{
 		while (map[i][x])
 		{
-			if(map[i][x] == ' ')
+			if (map[i][x] == ' ')
 				check_borders(game, game->map, i, x);
 			else
 				take_spawn(game, map[i][x], i, x);

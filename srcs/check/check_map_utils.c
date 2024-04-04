@@ -31,7 +31,7 @@ void realloc_map(t_game *game)
 	}
 }
 
-char *realloc_line(char *line, int r)
+char *realloc_line(char *line, int width)
 {
 	char *new_line;
 	int i;
@@ -39,22 +39,22 @@ char *realloc_line(char *line, int r)
 	i = 0;
 	// if (ft_empty(line))
 	// 	exit(0);
-	new_line = malloc(r * sizeof(char));
-	while(line[i] && line[i] != '\n')
+	new_line = malloc(sizeof(char) * (width + 1));
+	while (line[i] && line[i] != '\n')
 	{
 		new_line[i] = line[i];
 		i++;
 	}
 	free(line);
-	while (i < r)
+	while (i < width)
 		new_line[i++] = ' ';
 	new_line[i] = '\0';
 	return (new_line);
 }
 
-char *alloc_mtx(t_game *game, char *line, int *fd, int *map_counter)
+char	*alloc_mtx(t_game *game, char *line, int *fd, int *map_counter)
 {
-	int z;
+	int	z;
 
 	z = 0;
 	while (line)
@@ -65,7 +65,7 @@ char *alloc_mtx(t_game *game, char *line, int *fd, int *map_counter)
 		game->path.height++;
 	}
 	close(*fd);
-	game->map = malloc(sizeof(char *) * game->path.height + 1);
+	game->map = malloc(sizeof(char *) * (game->path.height + 1));
 	game->map[game->path.height] = '\0';
 	*fd = open (game->path.file_name, O_RDONLY);
 	while (*map_counter > 0)
@@ -73,7 +73,7 @@ char *alloc_mtx(t_game *game, char *line, int *fd, int *map_counter)
 		line = next_line(&line, fd, &z);
 		(*map_counter)--;
 	}
-	return(line);
+	return (line);
 }
 
 int	check_colors(t_game *game, char *color, t_rgb *colors)

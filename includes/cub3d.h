@@ -163,7 +163,7 @@ void				free_rgb(char **rgb);
 char				*skip_empty_lines(t_game *game, char *line, int *fd, int *map_counter);
 char				*alloc_mtx(t_game *game, char *line, int *fd, int *map_counter);
 void				invalid_map_error(t_game *game, char *line);
-char				*realloc_line(char *line, int r);
+char				*realloc_line(char *line, int width);
 void				realloc_map(t_game *game);
 void				check_left_right(t_game *game, char **map);
 void				check_up_down(t_game *game, char **map);
