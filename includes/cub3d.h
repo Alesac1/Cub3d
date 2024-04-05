@@ -48,6 +48,7 @@ typedef struct s_map
 	int				height;
 	int				width;
 	char			*file_name;
+	int				allocated;
 }					t_map;
 
 typedef struct s_spawn

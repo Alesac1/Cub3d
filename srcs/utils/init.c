@@ -89,6 +89,7 @@ void	init_struct(t_game *game)
 	game->path.floor = DEFAULT;
 	game->path.width = DEFAULT;
 	game->path.height = DEFAULT;
+	game->path.allocated = 0;
 }
 
 

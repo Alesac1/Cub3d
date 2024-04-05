@@ -12,7 +12,7 @@
 
 #include "../../includes/cub3d.h"
 
-void	check_args(t_game *game, int argc, const char **argv, int *fd)
+	void	check_args(t_game *game, int argc, const char **argv, int *fd)
 {
 	int	map_counter;
 
@@ -71,7 +71,11 @@ void	pop_args(char *line, t_game *game)
 	else if (!ft_strncmp(line, "F", 1) && game->path.floor == DEFAULT)
 		game->path.floor = ft_strtrim(line + 2, " \n");
 	else
-		print_error("Wrong map!\n", game, 0);
+	{
+		free(line);
+		print_error("Wrong map!\n", game, 1);
+	}
+	game->path.allocated++;
 }
 
 int	full_check(t_game *game)
@@ -93,6 +97,6 @@ char	*skip_empty_lines(t_game *game, char *line, int *fd, int *map_counter)
 	while (line && line[0] == '\n')
 		line = next_line(&line, fd, map_counter);
 	if (line[0] == '\0')
-		print_error("Error! Wrong map!\n", game, 0);
+		print_error("Error! Wrong map!\n", game, 3);
 	return (line);
 }

@@ -27,7 +27,7 @@ void	check_right(t_game *game, char **map)
 			if (map[i][x] == '1')
 				break;
 			else
-				print_error("Error! wrong map!\n", game, 0);
+				print_error("Error! wrong map!\n", game, 3);
 		}
 		x = game->path.width;
 		i++;
@@ -50,7 +50,7 @@ void	check_left_right(t_game *game, char **map)
 			if (map[i][x] == '1')
 				break;
 			else
-				print_error("Error! wrong map!\n", game, 0);
+				print_error("Error! wrong map!\n", game, 3);
 		}
 		x = 0;
 		i++;
@@ -75,7 +75,7 @@ void	check_up_down(t_game *game, char **map)
 				if (map[i][x] == ' ' || map[i][x] == '1')
 					x++;
 				else
-					print_error("Error! wrong map!\n", game, 0);
+					print_error("Error! wrong map!\n", game, 3);
 			}
 		}
 		i++;
