@@ -114,7 +114,15 @@ typedef struct s_walls
 	int		tex_y;
 	double	step;
 	double	tex_pos;
+	struct s_doors	doors;
 }	t_walls;
+
+typedef struct s_doors
+{
+	float			hit_x;
+	float			hit_y;
+	float			open;
+}	t_doors;
 
 typedef struct s_moves 
 {
@@ -180,6 +188,6 @@ void				set_vars(t_game *game);
 double				ft_double(int b, double t, double f);
 unsigned int		get_pixel(t_img *img, int x, int y);
 void				init_mlx(t_game *game);
-
+void				check_doors(t_game *game, char **map);
 
 #endif

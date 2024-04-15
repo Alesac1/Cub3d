@@ -118,7 +118,7 @@ void take_spawn(t_game *game, char c, int y, int x)
 		game->spawn.x = x;
 		game->spawn.y = y;
 	}
-	else if (c == '1' || c == '0')
+	else if (c == '1' || c == '0' || c == '2')
 		y++;
 	else
 		print_error("Error! invalid map input!\n", game, 0);
