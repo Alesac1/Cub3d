@@ -90,6 +90,13 @@ typedef struct s_mlx
 	double			old_time;
 } 			t_mlx;
 
+typedef struct s_doors
+{
+	float			hit_x;
+	float			hit_y;
+	float			open;
+}	t_doors;
+
 typedef struct s_walls 
 {
 	double	camera_x;
@@ -116,13 +123,6 @@ typedef struct s_walls
 	double	tex_pos;
 	struct s_doors	doors;
 }	t_walls;
-
-typedef struct s_doors
-{
-	float			hit_x;
-	float			hit_y;
-	float			open;
-}	t_doors;
 
 typedef struct s_moves 
 {
@@ -189,5 +189,11 @@ double				ft_double(int b, double t, double f);
 unsigned int		get_pixel(t_img *img, int x, int y);
 void				init_mlx(t_game *game);
 void				check_doors(t_game *game, char **map);
+void				move_forward(t_game *game);
+void				move_side(t_game *game);
+void				rotate_camera(t_game *game);
+void				set_pos(t_game *game);
+void				get_addresses(t_game *game);
+
 
 #endif
