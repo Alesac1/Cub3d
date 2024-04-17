@@ -40,7 +40,7 @@ void	render_walls(t_game *game)
 	while (x < SCREENWIDTH)
 	{
 		set_data(&game->walls_data, &game->mlx, x);
-		check_distance(game, &game->walls_data, game->map);
+		check_distance(game, &game->walls_data, game->map, x);
 		game->walls_data.wall_x = ft_double(game->walls_data.side == 0, game->mlx.pos_y + game->walls_data.w_dist
 				* game->walls_data.ray_dir_y, game->mlx.pos_x + game->walls_data.w_dist * game->walls_data.ray_dir_x);
 		game->walls_data.wall_x -= floor((game->walls_data.wall_x));
@@ -77,7 +77,7 @@ void	set_data(t_walls *data, t_mlx *mlx, int x)
 			* data->delta_y);
 }
 
-void	check_distance(t_game *game, t_walls *data, char **map)
+void	check_distance(t_game *game, t_walls *data, char **map, int x)
 {
 	while (data->hit == 0)
 	{
@@ -131,6 +131,12 @@ void	render_y(t_walls *data, t_mlx *mlx, int x)
 				my_mlx_pixel_put(&mlx->img, SCREENWIDTH - x, y,
 					get_pixel(&mlx->ea, data->tex_x, data->tex_y));
 		}
+		else if (data->hit == 2)
+		{
+			my_mlx_pixel_put(&mlx->img, SCREENWIDTH - x, y,
+				get_pixel(&mlx->no, data->tex_x, data->tex_y));
+		}
+		
 		y++;
 	}
 }
@@ -141,7 +147,8 @@ void	check_doors(t_game *game, char **map)
 
 	if (map[game->walls_data.map_y][game->walls_data.map_x] != '2')
 		return ;
-	if (game->walls_data.side == 0)
+	// printf("map_x: %d   map_y: %d\n", game->walls_data.map_x, game->walls_data.map_y);
+	if (game->walls_data.side == 1)
 	{
 		game->walls_data.doors.hit_x = game->mlx.pos_x + ((game->walls_data.map_y - game->mlx.pos_y
 			+ (1 - game->walls_data.step_y) / 2) / game->walls_data.ray_dir_y) * game->walls_data.ray_dir_x;
@@ -153,7 +160,8 @@ void	check_doors(t_game *game, char **map)
 		game->walls_data.doors.hit_y = game->mlx.pos_y + ((game->walls_data.map_x - game->mlx.pos_x
 			+ (1 - game->walls_data.step_x) / 2) / game->walls_data.ray_dir_x) * game->walls_data.ray_dir_y;
 	}
-	hit_pos = ft_double(game->walls_data.side == 0, game->walls_data.doors.hit_x - floor(game->walls_data.doors.hit_x), 
+	hit_pos = ft_double(game->walls_data.side == 1, game->walls_data.doors.hit_x - floor(game->walls_data.doors.hit_x), 
 	game->walls_data.doors.hit_y - floor(game->walls_data.doors.hit_y));
 	game->walls_data.hit = ft_double(hit_pos <= game->walls_data.doors.open, 2, 0);
+	// printf("hit: %d   hit_pos: %f     open: %f  hit_x: %f  hit_y: %f\n", game->walls_data.hit, hit_pos, game->walls_data.doors.open, game->walls_data.doors.hit_x, game->walls_data.doors.hit_y);
 }

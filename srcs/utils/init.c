@@ -29,7 +29,7 @@ void	set_vars(t_game *game)
 	game->moves.d = 0;
 	game->moves.l = 0;
 	game->moves.r = 0;
-	game->walls_data.doors.open = 0;
+	game->walls_data.doors.open = 0.5;
 	game->walls_data.doors.hit_x = 0;
 	game->walls_data.doors.hit_y = 0;
 }
