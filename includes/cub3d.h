@@ -122,6 +122,10 @@ typedef struct s_walls
 	double	step;
 	double	tex_pos;
 	struct s_doors	doors;
+	int		central;
+	float	c_x;
+	float	c_y;
+	int		c_side;
 }	t_walls;
 
 typedef struct s_moves 
@@ -183,13 +187,13 @@ int					handle_keypress(int keycode, t_game *game);
 void				handle_movement(int keycode, t_game *game);
 void				close_all(t_game *game, int i);
 void				init_game(t_game *game);
-int					game_loop(t_game *game);
+int					game_loop(t_game *game, t_walls *data);
 void				set_vars(t_game *game);
 double				ft_double(int b, double t, double f);
 unsigned int		get_pixel(t_img *img, int x, int y);
 void				init_mlx(t_game *game);
 void				check_doors(t_game *game, char **map);
-void				move_forward(t_game *game);
+void				move_forward(t_game *game, t_walls *data);
 void				move_side(t_game *game);
 void				rotate_camera(t_game *game);
 void				set_pos(t_game *game);

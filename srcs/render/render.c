@@ -39,6 +39,8 @@ void	render_walls(t_game *game)
 	x = 0;
 	while (x < SCREENWIDTH)
 	{
+		if (x == SCREENWIDTH / 2)
+			game->walls_data.central = 1;
 		set_data(&game->walls_data, &game->mlx, x);
 		check_distance(game, &game->walls_data, game->map, x);
 		game->walls_data.wall_x = ft_double(game->walls_data.side == 0, game->mlx.pos_y + game->walls_data.w_dist
@@ -75,6 +77,16 @@ void	set_data(t_walls *data, t_mlx *mlx, int x)
 	data->side_dist_y = ft_double(data->ray_dir_y < 0, (mlx->pos_y - data->map_y)
 			* data->delta_y, (data->map_y + 1.0 - mlx->pos_y)
 			* data->delta_y);
+	if (data->central == 1)
+	{
+		data->c_x = mlx->pos_x;
+		data->c_y = mlx->pos_y;
+		if (data->side_dist_x < data->side_dist_y)
+			data->c_side = 0;
+		else
+			data->c_side = 1;
+		data->central = 0;
+	}
 }
 
 void	check_distance(t_game *game, t_walls *data, char **map, int x)

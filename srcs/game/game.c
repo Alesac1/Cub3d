@@ -11,13 +11,13 @@
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-int	game_loop(t_game *game)
+int	game_loop(t_game *game, t_walls *data)
 {
 	game->walls_data.doors.open += 0.01;
 	if (game->walls_data.doors.open >= 1)
-		game->walls_data.doors.open = 0	;
+		game->walls_data.doors.open = 0.7;	;
 	if (game->moves.w == 1 || game->moves.s == 1)
-		move_forward(game);
+		move_forward(game, data);
 	if (game->moves.a == 1 || game->moves.d == 1)
 		move_side(game);
 	if (game->moves.l == 1 || game->moves.r == 1)
