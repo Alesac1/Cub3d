@@ -160,6 +160,7 @@ void	check_doors(t_game *game, char **map)
 	if (map[game->walls_data.map_y][game->walls_data.map_x] != '2')
 		return ;
 	// printf("map_x: %d   map_y: %d\n", game->walls_data.map_x, game->walls_data.map_y);
+	game->walls_data.doors.side = game->walls_data.side;
 	if (game->walls_data.side == 1)
 	{
 		game->walls_data.doors.hit_x = game->mlx.pos_x + ((game->walls_data.map_y - game->mlx.pos_y

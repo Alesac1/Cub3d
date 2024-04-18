@@ -95,6 +95,7 @@ typedef struct s_doors
 	float			hit_x;
 	float			hit_y;
 	float			open;
+	int				side;
 }	t_doors;
 
 typedef struct s_walls 
@@ -193,7 +194,7 @@ double				ft_double(int b, double t, double f);
 unsigned int		get_pixel(t_img *img, int x, int y);
 void				init_mlx(t_game *game);
 void				check_doors(t_game *game, char **map);
-void				move_forward(t_game *game, t_walls *data);
+void				move_forward(t_game *game);
 void				move_side(t_game *game);
 void				rotate_camera(t_game *game);
 void				set_pos(t_game *game);

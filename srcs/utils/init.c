@@ -32,6 +32,7 @@ void	set_vars(t_game *game)
 	game->walls_data.doors.open = 0.5;
 	game->walls_data.doors.hit_x = 0;
 	game->walls_data.doors.hit_y = 0;
+	game->walls_data.doors.side = 0;
 }
 
 void	load_imgs(t_game *game)
