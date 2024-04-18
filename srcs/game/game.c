@@ -17,7 +17,7 @@ int	game_loop(t_game *game, t_walls *data)
 	if (game->walls_data.doors.open >= 1)
 		game->walls_data.doors.open = 0.7;	;
 	if (game->moves.w == 1 || game->moves.s == 1)
-		move_forward(game, data);
+		move_forward(game);
 	if (game->moves.a == 1 || game->moves.d == 1)
 		move_side(game);
 	if (game->moves.l == 1 || game->moves.r == 1)

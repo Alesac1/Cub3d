@@ -199,6 +199,8 @@ void				move_side(t_game *game);
 void				rotate_camera(t_game *game);
 void				set_pos(t_game *game);
 void				get_addresses(t_game *game);
+void 				take_spawn(t_game *game, char c, int y, int x);
+void				render_things(t_game *game);
 
 
 #endif
