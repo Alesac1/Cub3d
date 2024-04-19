@@ -36,6 +36,9 @@ void	get_addresses(t_game *game)
 	game->mlx.no.addr = mlx_get_data_addr(game->mlx.no.img,
 			&game->mlx.no.bits_per_pixel, &game->mlx.no.line_length,
 			&game->mlx.no.endian);
+	game->mlx.door.addr = mlx_get_data_addr(game->mlx.door.img,
+			&game->mlx.door.bits_per_pixel, &game->mlx.door.line_length,
+			&game->mlx.door.endian);
 }
 
 void	free_rgb(char **rgb)
