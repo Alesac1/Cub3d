@@ -144,11 +144,8 @@ void	render_y(t_walls *data, t_mlx *mlx, int x)
 					get_pixel(&mlx->ea, data->tex_x, data->tex_y));
 		}
 		else if (data->hit == 2)
-		{
 			my_mlx_pixel_put(&mlx->img, SCREENWIDTH - x, y,
-				get_pixel(&mlx->no, data->tex_x, data->tex_y));
-		}
-		
+				get_pixel(&mlx->no, data->tex_x, data->tex_y));		
 		y++;
 	}
 }

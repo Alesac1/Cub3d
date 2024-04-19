@@ -33,6 +33,7 @@ void	set_vars(t_game *game)
 	game->walls_data.doors.hit_x = 0;
 	game->walls_data.doors.hit_y = 0;
 	game->walls_data.doors.side = 0;
+	game->walls_data.doors.direction = 0;
 }
 
 void	load_imgs(t_game *game)
@@ -57,6 +58,10 @@ void	load_imgs(t_game *game)
 	game->mlx.no.img = mlx_xpm_file_to_image(game->mlx.mlx, game->path.north,
 			&r, &z);
 	if (!game->mlx.no.img)
+		print_error("ERROR. Invalid textures.", game, 0);
+	game->mlx.door.img = mlx_xpm_file_to_image(game->mlx.mlx, "./textures/door.xpm",
+			&r, &z);
+	if (!game->mlx.door.img)
 		print_error("ERROR. Invalid textures.", game, 0);
 	get_addresses(game);
 }

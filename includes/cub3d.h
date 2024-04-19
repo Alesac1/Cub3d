@@ -76,6 +76,7 @@ typedef struct s_mlx
 	t_img			so;
 	t_img			we;
 	t_img			no;
+	t_img			door;
 	int				endian;
 	int				old_mouse_x;
 	struct timeval	start;
@@ -96,6 +97,7 @@ typedef struct s_doors
 	float			hit_y;
 	float			open;
 	int				side;
+	int				direction;
 }	t_doors;
 
 typedef struct s_walls 
@@ -201,6 +203,5 @@ void				set_pos(t_game *game);
 void				get_addresses(t_game *game);
 void 				take_spawn(t_game *game, char c, int y, int x);
 void				render_things(t_game *game);
-
 
 #endif

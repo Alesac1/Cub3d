@@ -11,11 +11,17 @@
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
 int	game_loop(t_game *game, t_walls *data)
 {
-	game->walls_data.doors.open += 0.01;
+	if (game->walls_data.doors.direction)
+		game->walls_data.doors.open += 0.005;
+	else
+		game->walls_data.doors.open -= 0.005;
 	if (game->walls_data.doors.open >= 1)
-		game->walls_data.doors.open = 0.7;	;
+		game->walls_data.doors.direction = 0;
+	else if (game->walls_data.doors.open <= 0)
+		game->walls_data.doors.direction = 1;
 	if (game->moves.w == 1 || game->moves.s == 1)
 		move_forward(game);
 	if (game->moves.a == 1 || game->moves.d == 1)
