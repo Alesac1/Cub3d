@@ -28,6 +28,7 @@
 		print_error("missing map instructions!\n", game, 0);
 	pop_map(game, fd, &map_counter);
 	check_map(game, game->map);
+	door_matrix(game);
 }
 
 

@@ -91,14 +91,15 @@ typedef struct s_mlx
 	double			old_time;
 } 			t_mlx;
 
-typedef struct s_doors
+typedef struct s_obj
 {
+	int				door;
 	float			hit_x;
 	float			hit_y;
 	float			open;
 	int				side;
 	int				direction;
-}	t_doors;
+}	t_obj;
 
 typedef struct s_walls 
 {
@@ -124,7 +125,6 @@ typedef struct s_walls
 	int		tex_y;
 	double	step;
 	double	tex_pos;
-	struct s_doors	doors;
 	int		central;
 	float	c_x;
 	float	c_y;
@@ -153,6 +153,7 @@ typedef struct s_game
 	struct s_spawn	spawn;
 	struct s_walls	walls_data;
 	struct s_moves	moves;
+	struct s_obj	**doors;
 	char			**map;
 }					t_game;
 
@@ -206,5 +207,7 @@ void				render_things(t_game *game);
 void 				moving(t_game *game, float next_x, float next_y);
 void				render_floor_ceiling(t_game *game);
 void				render_walls(t_game *game);
+void				door_matrix(t_game *game);
+void 			   animation(t_game *game);
 
 #endif

@@ -22,11 +22,13 @@ SRCS := srcs/main.c \
 		srcs/check/check_map_utils.c \
 		srcs/check/check_map.c \
 		srcs/check/check.c \
+		srcs/check/door.c \
 		srcs/utils/error.c \
 		srcs/game/game.c \
 		srcs/utils/init.c \
 		srcs/game/mlx_handle.c \
 		srcs/game/move.c \
+		srcs/render/animation.c \
 		srcs/render/render_utils.c \
 		srcs/render/render.c \
 		srcs/utils/utils.c \

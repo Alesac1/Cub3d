@@ -12,16 +12,18 @@
 
 #include "../../includes/cub3d.h"
 
+void	start_game(t_game *game)
+{
+	mlx_hook(game->mlx.window, 17, 0, &click_x, game);
+	mlx_loop_hook(game->mlx.mlx, &game_loop, game);
+	mlx_hook(game->mlx.window, 3, 1L << 1, &handle_keyrelease, game);
+	mlx_hook(game->mlx.window, 2, 1L << 0, &handle_keypress, game);
+	mlx_loop(game->mlx.mlx);
+}
+
 int	game_loop(t_game *game, t_walls *data)
 {
-	if (game->walls_data.doors.direction)
-		game->walls_data.doors.open += 0.005;
-	else
-		game->walls_data.doors.open -= 0.005;
-	if (game->walls_data.doors.open >= 1)
-		game->walls_data.doors.direction = 0;
-	else if (game->walls_data.doors.open <= 0)
-		game->walls_data.doors.direction = 1;
+	animation(game);
 	if (game->moves.w == 1 || game->moves.s == 1)
 		move_forward(game);
 	if (game->moves.a == 1 || game->moves.d == 1)

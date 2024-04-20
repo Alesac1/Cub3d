@@ -55,7 +55,7 @@ void	render_walls(t_game *game)
 		game->walls_data.step = 1.0 * TEXHEIGHT / game->walls_data.line_height;
 		game->walls_data.tex_pos = (game->walls_data.draw_start - SCREENHEIGHT / 2
 				+ game->walls_data.line_height / 2) * game->walls_data.step;
-		render_y(&game->walls_data, &game->mlx, x);
+		render_y(game, &game->mlx, x);
 		x++;
 	}
 }
@@ -78,16 +78,6 @@ void	set_data(t_walls *data, t_mlx *mlx, int x)
 	data->side_dist_y = ft_double(data->ray_dir_y < 0, (mlx->pos_y - data->map_y)
 			* data->delta_y, (data->map_y + 1.0 - mlx->pos_y)
 			* data->delta_y);
-	if (data->central == 1)
-	{
-		data->c_x = mlx->pos_x;
-		data->c_y = mlx->pos_y;
-		if (data->side_dist_x < data->side_dist_y)
-			data->c_side = 0;
-		else
-			data->c_side = 1;
-		data->central = 0;
-	}
 }
 
 void	check_distance(t_game *game, t_walls *data, char **map, int x)
@@ -120,10 +110,12 @@ void	check_distance(t_game *game, t_walls *data, char **map, int x)
 		data->draw_end = SCREENHEIGHT - 1;
 }
 
-void	render_y(t_walls *data, t_mlx *mlx, int x)
+void	render_y(t_game	*game, t_mlx *mlx, int x)
 {
 	int				y;
+	t_walls			*data;
 
+	data = &game->walls_data;
 	y = data->draw_start;
 	while (y < data->draw_end)
 	{
@@ -146,7 +138,7 @@ void	render_y(t_walls *data, t_mlx *mlx, int x)
 		}
 		else if (data->hit == 2)
 			my_mlx_pixel_put(&mlx->img, SCREENWIDTH - x, y,
-				get_pixel(&mlx->door, (data->tex_x + (int)(data->doors.open
+				get_pixel(&mlx->door, (data->tex_x + (int)(game->doors[game->walls_data.map_y][game->walls_data.map_x].open
 					* TEXWIDTH)) % TEXWIDTH, data->tex_y));		
 		y++;
 	}
@@ -156,24 +148,30 @@ void	check_doors(t_game *game, char **map)
 {
 	float	hit_pos;
 
-	if (map[game->walls_data.map_y][game->walls_data.map_x] != '2')
-		return ;
-	// printf("map_x: %d   map_y: %d\n", game->walls_data.map_x, game->walls_data.map_y);
-	game->walls_data.doors.side = game->walls_data.side;
+	game->doors[game->walls_data.map_y][game->walls_data.map_x].side = game->walls_data.side;
 	if (game->walls_data.side == 1)
 	{
-		game->walls_data.doors.hit_x = game->mlx.pos_x + ((game->walls_data.map_y - game->mlx.pos_y
+		game->doors[game->walls_data.map_y][game->walls_data.map_x].hit_x = game->mlx.pos_x + ((game->walls_data.map_y - game->mlx.pos_y
 			+ (1 - game->walls_data.step_y) / 2) / game->walls_data.ray_dir_y) * game->walls_data.ray_dir_x;
-		game->walls_data.doors.hit_y = game->walls_data.map_y + (1 - game->walls_data.step_y) / 2;
+		game->doors[game->walls_data.map_y][game->walls_data.map_x].hit_y = game->walls_data.map_y + (1 - game->walls_data.step_y) / 2;
 	}
 	else
 	{
-		game->walls_data.doors.hit_x = game->walls_data.map_x + (1 - game->walls_data.step_x) / 2;
-		game->walls_data.doors.hit_y = game->mlx.pos_y + ((game->walls_data.map_x - game->mlx.pos_x
+		game->doors[game->walls_data.map_y][game->walls_data.map_x].hit_x = game->walls_data.map_x + (1 - game->walls_data.step_x) / 2;
+		game->doors[game->walls_data.map_y][game->walls_data.map_x].hit_y = game->mlx.pos_y + ((game->walls_data.map_x - game->mlx.pos_x
 			+ (1 - game->walls_data.step_x) / 2) / game->walls_data.ray_dir_x) * game->walls_data.ray_dir_y;
 	}
-	hit_pos = ft_double(game->walls_data.side == 1, game->walls_data.doors.hit_x - floor(game->walls_data.doors.hit_x), 
-	game->walls_data.doors.hit_y - floor(game->walls_data.doors.hit_y));
-	game->walls_data.hit = ft_double(hit_pos <= game->walls_data.doors.open, 2, 0);
+	hit_pos = ft_double(game->walls_data.side == 1, game->doors[game->walls_data.map_y][game->walls_data.map_x].hit_x - floor(game->doors[game->walls_data.map_y][game->walls_data.map_x].hit_x), 
+	game->doors[game->walls_data.map_y][game->walls_data.map_x].hit_y - floor(game->doors[game->walls_data.map_y][game->walls_data.map_x].hit_y));
+	if (game->walls_data.central == 1)
+	{
+		game->walls_data.c_x = game->doors[game->walls_data.map_y][game->walls_data.map_x].hit_x;
+		game->walls_data.c_y = game->doors[game->walls_data.map_y][game->walls_data.map_x].hit_y;
+		game->walls_data.c_side = game->doors[game->walls_data.map_y][game->walls_data.map_x].side;
+		game->walls_data.central = 0;
+	}
+	if (map[game->walls_data.map_y][game->walls_data.map_x] != '2')
+		return ;
+	game->walls_data.hit = ft_double(hit_pos <= game->doors[game->walls_data.map_y][game->walls_data.map_x].open, 2, 0);
 	// printf("hit: %d   hit_pos: %f     open: %f  hit_x: %f  hit_y: %f\n", game->walls_data.hit, hit_pos, game->walls_data.doors.open, game->walls_data.doors.hit_x, game->walls_data.doors.hit_y);
 }

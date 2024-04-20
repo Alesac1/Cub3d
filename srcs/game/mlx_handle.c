@@ -50,6 +50,8 @@ int	handle_keypress(int keycode, t_game *game)
 		game->moves.r = 1;
 		game->moves.rot_speed = .05;
 	}
+	if (keycode == 101)
+   		game->doors[(int)game->walls_data.c_y][(int)game->walls_data.c_x].direction = -1;
 	return (1);
 }
 

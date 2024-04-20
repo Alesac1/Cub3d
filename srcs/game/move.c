@@ -41,8 +41,8 @@ void moving(t_game *game, float next_x, float next_y)
 	hity = next_y - floor(next_y);
 	if (game->map[(int)next_y][(int)next_x] == '2')
 	{
-	if ((game->walls_data.doors.side == 1 && hitx < game->walls_data.doors.open) ||
-				(game->walls_data.doors.side == 0 && hity < game->walls_data.doors.open))
+	if ((game->doors[(int)next_y][(int)next_x].side == 1 && hitx < game->doors[(int)next_y][(int)next_x].open) ||
+				(game->doors[(int)next_y][(int)next_x].side == 0 && hity < game->doors[(int)next_y][(int)next_x].open))
 			return;
 	}
 	if (game->map[(int)(game->mlx.pos_y)][(int)next_x] != '1')
