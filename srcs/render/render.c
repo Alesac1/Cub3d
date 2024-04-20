@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
 void	render_floor_ceiling(t_game *game)
 {
 	int	y;
@@ -145,7 +146,8 @@ void	render_y(t_walls *data, t_mlx *mlx, int x)
 		}
 		else if (data->hit == 2)
 			my_mlx_pixel_put(&mlx->img, SCREENWIDTH - x, y,
-				get_pixel(&mlx->door, data->tex_x, data->tex_y));		
+				get_pixel(&mlx->door, (data->tex_x + (int)(data->doors.open
+					* TEXWIDTH)) % TEXWIDTH, data->tex_y));		
 		y++;
 	}
 }

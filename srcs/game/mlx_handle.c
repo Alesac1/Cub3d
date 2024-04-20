@@ -11,18 +11,6 @@
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-int	click_x(t_game *game)
-{
-	mlx_destroy_image(game->mlx.mlx, game->mlx.no.img);
-	mlx_destroy_image(game->mlx.mlx, game->mlx.so.img);
-	mlx_destroy_image(game->mlx.mlx, game->mlx.we.img);
-	mlx_destroy_image(game->mlx.mlx, game->mlx.ea.img);
-	mlx_destroy_image(game->mlx.mlx, game->mlx.door.img);
-	mlx_destroy_image(game->mlx.mlx, game->mlx.img.img);
-	mlx_destroy_window(game->mlx.mlx, game->mlx.window);
-	close_all(game, 3);
-	return (0);
-}
 
 int	handle_keyrelease(int keycode, t_game *game)
 {

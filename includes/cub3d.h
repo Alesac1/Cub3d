@@ -204,5 +204,7 @@ void				get_addresses(t_game *game);
 void 				take_spawn(t_game *game, char c, int y, int x);
 void				render_things(t_game *game);
 void 				moving(t_game *game, float next_x, float next_y);
+void				render_floor_ceiling(t_game *game);
+void				render_walls(t_game *game);
 
 #endif

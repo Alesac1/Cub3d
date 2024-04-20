@@ -26,7 +26,7 @@ SRCS := srcs/main.c \
 		srcs/game/game.c \
 		srcs/utils/init.c \
 		srcs/game/mlx_handle.c \
-		srcs/render/move.c \
+		srcs/game/move.c \
 		srcs/render/render_utils.c \
 		srcs/render/render.c \
 		srcs/utils/utils.c \
