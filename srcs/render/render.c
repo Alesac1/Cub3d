@@ -150,7 +150,7 @@ void	render_y(t_game	*game, t_mlx *mlx, int x)
 					* TEXWIDTH)) % TEXWIDTH, data->tex_y));		
 		else if (data->hit == 2)
 			my_mlx_pixel_put(&mlx->img, SCREENWIDTH - x, y,
-				get_pixel(&mlx->door, (data->tex_x + ((int)(1 - game->doors[game->walls_data.map_y][game->walls_data.map_x].open)
+				get_pixel(&mlx->door, (int)(data->tex_x + ((1 - game->doors[game->walls_data.map_y][game->walls_data.map_x].open)
 					* TEXWIDTH)) % TEXWIDTH, data->tex_y));
 		y++;
 	}
