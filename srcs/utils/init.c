@@ -31,8 +31,8 @@ void	set_vars(t_game *game)
 	game->moves.d = 0;
 	game->moves.l = 0;
 	game->moves.r = 0;
-	game->mmap.width = game->mlx.width / 4;
-	game->mmap.sprite_size = game->mlx.height / 32;
+	game->mmap.width = game->mlx.width / 8;
+	game->mmap.sprite_size = game->mmap.width / 8;
 }
 
 void	load_imgs(t_game *game)
