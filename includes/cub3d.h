@@ -227,7 +227,7 @@ void				check_distance(t_game *game, t_walls *data, char **map, int x);
 void				render_y(t_game	*game, t_mlx *mlx, int x);
 void				set_data(t_game *game, t_walls *data, t_mlx *mlx, int x);
 void				render_minimap(t_game *game);
-void				blend_pixel(t_game *game, int x, int y, float alpha);
+void				blend_pixel(t_game *game, int x, int y);
 void				print_mmap(t_game *game, int x, int y);
 void				create_minimap(t_game *game);
 

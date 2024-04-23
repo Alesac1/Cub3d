@@ -6,7 +6,7 @@
 /*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 03:51:46 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/04/24 01:32:17 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/04/24 01:41:10 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	render_minimap(t_game *game)
 		while (x <= game->mmap.width)
 		{
 			print_mmap(game, x, y);
-			blend_pixel(game, x, y, 0.8);
+			blend_pixel(game, x, y);
+			// my_mlx_pixel_put(game, &game->mlx.img, x, y, get_pixel(&game->mmap.mmap, x, y));
 			x++;
 			if (x % game->mmap.sprite_size == 0)
 				game->mmap.x++;
@@ -61,11 +62,12 @@ void	render_minimap(t_game *game)
 	}
 }
 
-void	blend_pixel(t_game *game, int x, int y, float alpha)
+void	blend_pixel(t_game *game, int x, int y)
 {
 	unsigned int	blended_color;
 	unsigned char	src_rgba[4];
 	unsigned char	dst_rgba[4];
+	float			alpha;
 	int				i;
 
 	src_rgba[0] = (get_pixel(&game->mmap.mmap, x, y) >> 24) & 0xFF;
@@ -76,6 +78,12 @@ void	blend_pixel(t_game *game, int x, int y, float alpha)
 	dst_rgba[1] = (get_pixel(&game->mlx.img, x, y) >> 16) & 0xFF;
 	dst_rgba[2] = (get_pixel(&game->mlx.img, x, y) >> 8) & 0xFF;
 	dst_rgba[3] = (get_pixel(&game->mlx.img, x, y)) & 0xFF;
+	if (game->mmap.map[game->mmap.y][game->mmap.x] == 'N')
+		alpha = 0;
+	else if (game->mmap.map[game->mmap.y][game->mmap.x] == '0')
+		alpha = 0.3;
+	else
+		alpha = 1;
 	i = 0;
 	while (i < 4)
 	{
