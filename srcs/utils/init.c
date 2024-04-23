@@ -20,8 +20,8 @@ void	set_vars(t_game *game)
 	game->mlx.dir_y = 0;
 	game->mlx.plane_x = 0;
 	game->mlx.plane_y = 0;
-	game->mlx.width = 3840;
-	game->mlx.height = 2160;
+	game->mlx.width = 1920;
+	game->mlx.height = 1080;
 	set_pos(game);
 	game->moves.rot_speed = 0;
 	game->moves.move_speed = 0;
@@ -83,6 +83,7 @@ void	init_game(t_game *game)
 	set_vars(game);
 	init_mlx(game);
 	load_imgs(game);
+	initminimap(game);
 	//render_things(game);
 }
 
