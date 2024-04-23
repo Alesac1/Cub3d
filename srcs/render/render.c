@@ -17,16 +17,16 @@ void	render_floor_ceiling(t_game *game)
 	int	y;
 	int	x;
 
-	y = SCREENHEIGHT / 2 + 1;
-	while (y < SCREENHEIGHT)
+	y = game->mlx.height / 2 + 1;
+	while (y < game->mlx.height)
 	{
 		x = 0;
-		while (x < SCREENWIDTH)
+		while (x < game->mlx.width)
 		{
-			my_mlx_pixel_put(&game->mlx.img, SCREENWIDTH - x,
+			my_mlx_pixel_put(game, &game->mlx.img, game->mlx.width - x,
 				y, game->floor_color.hex);
-			my_mlx_pixel_put(&game->mlx.img, SCREENWIDTH - x,
-				SCREENHEIGHT - y - 1, game->ceiling_color.hex);
+			my_mlx_pixel_put(game, &game->mlx.img, game->mlx.width - x,
+				game->mlx.height - y - 1, game->ceiling_color.hex);
 			x++;
 		}
 		y++;
@@ -38,11 +38,11 @@ void	render_walls(t_game *game)
 	int	x;
 
 	x = 0;
-	while (x < SCREENWIDTH)
+	while (x < game->mlx.width)
 	{
-		if (x == SCREENWIDTH / 2)
+		if (x == game->mlx.width / 2)
 			game->walls_data.central = 1;
-		set_data(&game->walls_data, &game->mlx, x);
+		set_data(game, &game->walls_data, &game->mlx, x);
 		check_distance(game, &game->walls_data, game->map, x);
 		game->walls_data.wall_x = ft_double(game->walls_data.side == 0, game->mlx.pos_y + game->walls_data.w_dist
 				* game->walls_data.ray_dir_y, game->mlx.pos_x + game->walls_data.w_dist * game->walls_data.ray_dir_x);
@@ -53,16 +53,16 @@ void	render_walls(t_game *game)
 		if (game->walls_data.side == 1 && game->walls_data.ray_dir_y < 0)
 			game->walls_data.tex_x = TEXWIDTH - game->walls_data.tex_x - 1;
 		game->walls_data.step = 1.0 * TEXHEIGHT / game->walls_data.line_height;
-		game->walls_data.tex_pos = (game->walls_data.draw_start - SCREENHEIGHT / 2
+		game->walls_data.tex_pos = (game->walls_data.draw_start - game->mlx.height / 2
 				+ game->walls_data.line_height / 2) * game->walls_data.step;
 		render_y(game, &game->mlx, x);
 		x++;
 	}
 }
 
-void	set_data(t_walls *data, t_mlx *mlx, int x)
+void	set_data(t_game *game, t_walls *data, t_mlx *mlx, int x)
 {
-	data->camera_x = 2 * x / (double)SCREENWIDTH - 1;
+	data->camera_x = 2 * x / (double)game->mlx.width - 1;
 	data->ray_dir_x = mlx->dir_x + mlx->plane_x * data->camera_x;
 	data->ray_dir_y = mlx->dir_y + mlx->plane_y * data->camera_x;
 	data->map_x = (int)mlx->pos_x;
@@ -105,17 +105,17 @@ void	check_distance(t_game *game, t_walls *data, char **map, int x)
 		game->walls_data.c_y = game->doors[game->walls_data.map_y][game->walls_data.map_x].hit_y;
 		game->walls_data.c_side = game->doors[game->walls_data.map_y][game->walls_data.map_x].side;
 		game->walls_data.central = 0;
-		printf("hit_x: %f  hit_y: %f  side: %d\n", game->walls_data.c_x, game->walls_data.c_y, game->walls_data.c_side);
+		// printf("hit_x: %f  hit_y: %f  side: %d\n", game->walls_data.c_x, game->walls_data.c_y, game->walls_data.c_side);
 	}
 	data->w_dist = ft_double(data->side == 0, data->side_dist_x - data->delta_x,
 			data->side_dist_y - data->delta_y);
-	data->line_height = (int)(SCREENHEIGHT / data->w_dist);
-	data->draw_start = -data->line_height / 2 + SCREENHEIGHT / 2;
+	data->line_height = (int)(game->mlx.height / data->w_dist);
+	data->draw_start = -data->line_height / 2 + game->mlx.height / 2;
 	if (data->draw_start < 0)
 		data->draw_start = 0;
-	data->draw_end = data->line_height / 2 + SCREENHEIGHT / 2;
-	if (data->draw_end >= SCREENHEIGHT)
-		data->draw_end = SCREENHEIGHT - 1;
+	data->draw_end = data->line_height / 2 + game->mlx.height / 2;
+	if (data->draw_end >= game->mlx.height)
+		data->draw_end = game->mlx.height - 1;
 }
 
 void	render_y(t_game	*game, t_mlx *mlx, int x)
@@ -132,24 +132,24 @@ void	render_y(t_game	*game, t_mlx *mlx, int x)
 		if (data->hit == 1)
 		{
 			if (data->side != 0 && data->step_y == -1)
-				my_mlx_pixel_put(&mlx->img, SCREENWIDTH - x, y,
+				my_mlx_pixel_put(game, &mlx->img, game->mlx.width - x, y,
 					get_pixel(&mlx->no, data->tex_x, data->tex_y));
 			else if (data->side != 0 && data->step_y == 1)
-				my_mlx_pixel_put(&mlx->img, SCREENWIDTH - x, y,
+				my_mlx_pixel_put(game, &mlx->img, game->mlx.width - x, y,
 					get_pixel(&mlx->so, data->tex_x, data->tex_y));
 			else if (data->step_x == -1)
-				my_mlx_pixel_put(&mlx->img, SCREENWIDTH - x, y,
+				my_mlx_pixel_put(game, &mlx->img, game->mlx.width - x, y,
 					get_pixel(&mlx->we, data->tex_x, data->tex_y));
 			else if (data->step_x == 1)
-				my_mlx_pixel_put(&mlx->img, SCREENWIDTH - x, y,
+				my_mlx_pixel_put(game, &mlx->img, game->mlx.width - x, y,
 					get_pixel(&mlx->ea, data->tex_x, data->tex_y));
 		}
 		else if (data->hit == 2 && ((data->side == 0 && data->ray_dir_x > 0) || (data->side == 1 && data->ray_dir_y < 0)))
-			my_mlx_pixel_put(&mlx->img, SCREENWIDTH - x, y,
+			my_mlx_pixel_put(game, &mlx->img, game->mlx.width - x, y,
 				get_pixel(&mlx->door, (data->tex_x + (int)(game->doors[game->walls_data.map_y][game->walls_data.map_x].open
 					* TEXWIDTH)) % TEXWIDTH, data->tex_y));		
 		else if (data->hit == 2)
-			my_mlx_pixel_put(&mlx->img, SCREENWIDTH - x, y,
+			my_mlx_pixel_put(game, &mlx->img, game->mlx.width - x, y,
 				get_pixel(&mlx->door, (int)(data->tex_x + ((1 - game->doors[game->walls_data.map_y][game->walls_data.map_x].open)
 					* TEXWIDTH)) % TEXWIDTH, data->tex_y));
 		y++;

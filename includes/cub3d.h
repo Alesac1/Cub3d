@@ -71,6 +71,8 @@ typedef struct s_mlx
 {
 	void			*mlx;
 	void			*window;
+	int				width;
+	int				height;
 	t_img			img;
 	t_img			ea;
 	t_img			so;
@@ -144,6 +146,16 @@ typedef struct s_moves
 	double			rot_speed;
 }	t_moves;
 
+typedef struct s_mmap
+{
+	t_img			mmap;
+	char			**map;
+	int				width;
+	int				sprite_size;
+	int				x;
+	int				y;
+}					t_mmap;
+
 typedef struct s_game
 {
 	struct s_mlx	mlx;
@@ -154,6 +166,7 @@ typedef struct s_game
 	struct s_walls	walls_data;
 	struct s_moves	moves;
 	struct s_obj	**doors;
+	struct s_mmap	mmap;
 	char			**map;
 }					t_game;
 
@@ -208,6 +221,14 @@ void 				moving(t_game *game, float next_x, float next_y);
 void				render_floor_ceiling(t_game *game);
 void				render_walls(t_game *game);
 void				door_matrix(t_game *game);
-void 			   animation(t_game *game);
+void 			   	animation(t_game *game);
+void				my_mlx_pixel_put(t_game *game, t_img *data, int x, int y, int color);
+void				check_distance(t_game *game, t_walls *data, char **map, int x);
+void				render_y(t_game	*game, t_mlx *mlx, int x);
+void				set_data(t_game *game, t_walls *data, t_mlx *mlx, int x);
+void				render_minimap(t_game *game);
+void				blend_pixel(t_game *game, int x, int y, float alpha);
+void				print_mmap(t_game *game, int x, int y);
+void				create_minimap(t_game *game);
 
 #endif

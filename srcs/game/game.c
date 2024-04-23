@@ -38,6 +38,6 @@ void	render_things(t_game *game)
 {
 	render_floor_ceiling(game);
 	render_walls(game);
+	render_minimap(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.window, game->mlx.img.img, 0, 0);
 }
-

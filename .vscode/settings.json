@@ -19,6 +19,8 @@
         "ostream": "c",
         "streambuf": "c",
         "tuple": "c",
-        "utility": "c"
+        "utility": "c",
+        "xlib.h": "c",
+        "time.h": "c"
     }
 }

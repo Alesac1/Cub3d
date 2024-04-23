@@ -14,6 +14,7 @@
 
 int	handle_keyrelease(int keycode, t_game *game)
 {
+	// printf("keycode: %d\n", keycode);
 	if (keycode == XK_w || keycode == XK_s)
 		game->moves.move_speed = 0;
 	if (keycode == XK_d || keycode == XK_a)
@@ -32,6 +33,20 @@ int	handle_keyrelease(int keycode, t_game *game)
 		game->moves.l = 0;
 	if (keycode == XK_Right)
 		game->moves.r = 0;
+	// if (keycode == 61)
+	// {
+	// 	if (game->mlx.width * 2 <= 3840)
+	// 	{
+	// 		game->mlx.width *= 2;
+	// 		game->mlx.height *= 2;
+	// 	}
+	// }
+	// if (keycode == 45)
+	// {
+	// 	mlx_clear_window(game->mlx.mlx, game->mlx.window);
+	// 	game->mlx.width /= 2;
+	// 	game->mlx.height /= 2;
+	// }
 	return (1);
 }
 

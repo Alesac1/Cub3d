@@ -20,6 +20,8 @@ void	set_vars(t_game *game)
 	game->mlx.dir_y = 0;
 	game->mlx.plane_x = 0;
 	game->mlx.plane_y = 0;
+	game->mlx.width = 3840;
+	game->mlx.height = 2160;
 	set_pos(game);
 	game->moves.rot_speed = 0;
 	game->moves.move_speed = 0;
@@ -29,6 +31,8 @@ void	set_vars(t_game *game)
 	game->moves.d = 0;
 	game->moves.l = 0;
 	game->moves.r = 0;
+	game->mmap.width = game->mlx.width / 4;
+	game->mmap.sprite_size = game->mlx.height / 32;
 }
 
 void	load_imgs(t_game *game)
@@ -64,12 +68,12 @@ void	load_imgs(t_game *game)
 void	init_mlx(t_game *game)
 {
 	game->mlx.mlx = mlx_init();
-	game->mlx.img.img = mlx_new_image(game->mlx.mlx, SCREENWIDTH, SCREENHEIGHT);
+	game->mlx.img.img = mlx_new_image(game->mlx.mlx, game->mlx.width, game->mlx.height);
 	game->mlx.img.addr = mlx_get_data_addr(game->mlx.img.img,
 			&game->mlx.img.bits_per_pixel, &game->mlx.img.line_length,
 			&game->mlx.img.endian);
-	game->mlx.window = mlx_new_window(game->mlx.mlx, SCREENWIDTH,
-			SCREENHEIGHT, "CUB'TRE'D");
+	game->mlx.window = mlx_new_window(game->mlx.mlx, game->mlx.width,
+			game->mlx.height, "CUB'TRE'D");
 	mlx_put_image_to_window(game->mlx.mlx, game->mlx.window, game->mlx.img.img,
 		0, 0);
 }
