@@ -151,6 +151,7 @@ typedef struct s_mmap
 	t_img			mmap;
 	char			**map;
 	int				width;
+	int				size;
 	int				sprite_size;
 	int				x;
 	int				y;
@@ -230,5 +231,6 @@ void				render_minimap(t_game *game);
 void				blend_pixel(t_game *game, int x, int y);
 void				print_mmap(t_game *game, int x, int y);
 void				create_minimap(t_game *game);
+void	freemmap(t_game *game);
 
 #endif

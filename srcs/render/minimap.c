@@ -6,7 +6,7 @@
 /*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 03:51:46 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/04/24 02:17:12 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/04/24 04:40:56 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	initminimap(t_game *game)
 	game->mmap.mmap.addr = mlx_get_data_addr(game->mmap.mmap.img,
 			&game->mmap.mmap.bits_per_pixel, &game->mmap.mmap.line_length,
 			&game->mmap.mmap.endian);
-	game->mmap.map = (char **)malloc(sizeof(char *) * 9);
+	game->mmap.map = (char **)malloc(sizeof(char *) * (game->mmap.size + 1));
 	if (!game->mmap.map)
 		print_error("Error! Malloc failed!\n", game, 0);
-	while (i < 9)
+	while (i < (game->mmap.size + 1))
 	{
-		game->mmap.map[i] = (char *)malloc(sizeof(char) * 9);
+		game->mmap.map[i] = (char *)malloc(sizeof(char) * (game->mmap.size + 1));
 		if (!game->mmap.map[i])
 			print_error("Error! Malloc failed!\n", game, 0);
 		i++;
@@ -41,10 +41,11 @@ void	render_minimap(t_game *game)
 
 	y = 0;
 	game->mmap.width = game->mlx.width / 8;
-	game->mmap.sprite_size = game->mmap.width / 8;
+	game->mmap.sprite_size = game->mmap.width / game->mmap.size;
 	game->mmap.y = 0;
+	initminimap(game);
 	create_minimap(game);
-	printf(" width: %d\n", game->mmap.width);
+	//printf(" width: %d\n", game->mmap.width);
 	while (y <= game->mmap.width)
 	{
 		x = 0;
@@ -55,13 +56,14 @@ void	render_minimap(t_game *game)
 			blend_pixel(game, x, y);
 			// my_mlx_pixel_put(game, &game->mlx.img, x, y, get_pixel(&game->mmap.mmap, x, y));
 			x++;
-			if (x % game->mmap.sprite_size == 0)
+			if (x % game->mmap.sprite_size == 0 && game->mmap.x + 1 < game->mmap.size)
 				game->mmap.x++;
 		}
 		y++;
-		if (y % game->mmap.sprite_size == 0)
+		if (y % game->mmap.sprite_size == 0 && game->mmap.y + 1 < game->mmap.size)
 			game->mmap.y++;
 	}
+	freemmap(game);
 }
 
 void	print_mmap(t_game *game, int x, int y)
@@ -77,7 +79,7 @@ void	print_mmap(t_game *game, int x, int y)
 	else if (game->mmap.map[game->mmap.y][game->mmap.x] == 'P')
 		my_mlx_pixel_put(game, &game->mmap.mmap, x, y, 0x00FF00);
 	if (x >= game->mmap.width / 2 && y >= game->mmap.width / 2
-		&& x < game->mmap.width / 2 + 30 && y <= game->mmap.width / 2 + 30)
+		&& x < game->mmap.width / 2 + game->mmap.sprite_size && y < game->mmap.width / 2 + game->mmap.sprite_size)
 		my_mlx_pixel_put(game, &game->mmap.mmap, x, y, 0x0000FF);
 }
 void	blend_pixel(t_game *game, int x, int y)
@@ -124,32 +126,48 @@ void	create_minimap(t_game *game)
 	pos_x = game->mlx.pos_x;
 	pos_y = game->mlx.pos_y;
 	y = 0;
-	printf("\n  MINIMAP:\n");
-	while (y < 8)
+	//wdsprintf("\n  MINIMAP:\n");
+	while (y < game->mmap.size)
 	{
 		x = 0;
-		while (x < 8)
+		while (x < game->mmap.size)
 		{
 			// printf(" width: %d height: %d\n", game->path.width, game->path.height);
 			// printf("Map x: %d y: %d\n", pos_x - 4 + x, pos_y - 4 + y);
 			// printf("Mmap x: %d y: %d\n", x, y);
-			if (pos_x - 4 + x < 0 || pos_y - 4 + y < 0 || pos_x - 4 + x >= game->path.width || pos_y - 4 + y >= game->path.height)
+			if (pos_x - game->mmap.size / 2 + x < 0 || pos_y - game->mmap.size / 2 + y < 0 || pos_x - game->mmap.size / 2 + x >= game->path.width || pos_y - game->mmap.size / 2 + y >= game->path.height
+				|| x >= game->path.width || y >= game->path.height)
 				game->mmap.map[y][x] = 'N';
-			else if (game->map[pos_y - 4 + y][pos_x - 4 + x] == '1')
+			else if (game->map[pos_y - game->mmap.size / 2 + y][pos_x - game->mmap.size / 2 + x] == '1')
 				game->mmap.map[y][x] = '1';
-			else if (game->map[pos_y - 4 + y][pos_x - 4 + x] == '0')
+			else if (game->map[pos_y - game->mmap.size / 2 + y][pos_x - game->mmap.size / 2 + x] == '0')
 				game->mmap.map[y][x] = '0';
-			else if (game->map[pos_y - 4 + y][pos_x - 4 + x] == '2')
+			else if (game->map[pos_y - game->mmap.size / 2 + y][pos_x - game->mmap.size / 2 + x] == '2')
 				game->mmap.map[y][x] = '2';
-			else if (game->map[pos_y - 4 + y][pos_x - 4 + x] == 'N'
-				|| game->map[pos_y - 4 + y][pos_x - 4 + x] == 'S'
-				|| game->map[pos_y - 4 + y][pos_x - 4 + x] == 'E'
-				|| game->map[pos_y - 4 + y][pos_x - 4 + x] == 'W')
+			else if (game->map[pos_y - game->mmap.size / 2 + y][pos_x - game->mmap.size / 2 + x] == 'N'
+				|| game->map[pos_y - game->mmap.size / 2 + y][pos_x - game->mmap.size / 2 + x] == 'S'
+				|| game->map[pos_y - game->mmap.size / 2 + y][pos_x - game->mmap.size / 2 + x] == 'E'
+				|| game->map[pos_y - game->mmap.size / 2 + y][pos_x - game->mmap.size / 2 + x] == 'W')
 				game->mmap.map[y][x] = '0';
-			printf("|%c|", game->mmap.map[y][x]);
+			else
+				game->mmap.map[y][x] = 'N';
+			//printf("|%c|", game->mmap.map[y][x]);
 			x++;
 		}
-		printf("\n");
+		//printf("\n");
 		y++;
 	}
+}
+
+void	freemmap(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i <= game->mmap.size)
+	{
+		free(game->mmap.map[i]);
+		i++;
+	}
+	free(game->mmap.map);
 }

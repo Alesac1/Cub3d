@@ -35,18 +35,22 @@ int	handle_keyrelease(int keycode, t_game *game)
 		game->moves.r = 0;
 	if (keycode == 61)
 	{
-		if (game->mlx.width * 2 <= 1920)
-		{
-			mlx_clear_window(game->mlx.mlx, game->mlx.window);
-			game->mlx.width *= 2;
-			game->mlx.height *= 2;
-		}
+		if (game->mmap.size <= 64)
+			game->mmap.size *= 2;
+		// if (game->mlx.width * 2 <= 1920)
+		// {
+		// 	mlx_clear_window(game->mlx.mlx, game->mlx.window);
+		// 	game->mlx.width *= 2;
+		// 	game->mlx.height *= 2;
+		// }
 	}
 	if (keycode == 45)
 	{
-		mlx_clear_window(game->mlx.mlx, game->mlx.window);
-		game->mlx.width /= 2;
-		game->mlx.height /= 2;
+		if (game->mmap.size >= 4)
+			game->mmap.size /= 2;
+		// mlx_clear_window(game->mlx.mlx, game->mlx.window);
+		// game->mlx.width /= 2;
+		// // game->mlx.height /= 2;
 	}
 	return (1);
 }
