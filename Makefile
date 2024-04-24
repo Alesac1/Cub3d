@@ -1,6 +1,6 @@
 CC := gcc
 FLAGS := -Wall -Wextra -Werror
-FLAG_LINUX :=  -Imlx_linux -Lmlx_linux -lmlx -lmlx_Linux -L/usr/lib -lXext -lX11 -lm
+FLAG_LINUX :=  -Iincludes/mlx_linux -Lincludes/mlx_linux -lmlx -L/usr/lib -lXext -lX11 -lm
 FLAG_MACOS :=  -Lmlx -lmlx -lm -framework OpenGL -framework AppKit
 RM := rm -f
 
@@ -17,7 +17,22 @@ LIBFT = ./includes/libft/libft.a
 
 NAME := cub3d
 
-SRCS := main.c \
+SRCS := srcs/main.c \
+		srcs/check/check_args.c \
+		srcs/check/check_map_utils.c \
+		srcs/check/check_map.c \
+		srcs/check/check.c \
+		srcs/check/door.c \
+		srcs/utils/error.c \
+		srcs/game/game.c \
+		srcs/utils/init.c \
+		srcs/game/mlx_handle.c \
+		srcs/game/move.c \
+		srcs/render/animation.c \
+		srcs/render/minimap.c \
+		srcs/render/render_utils.c \
+		srcs/render/render.c \
+		srcs/utils/utils.c \
         includes/get_next_line/get_next_line.c \
         includes/get_next_line/get_next_line_utils.c
 
@@ -47,8 +62,8 @@ ifeq ($(UNAME), Linux)
 $(NAME): $(OBJS)
 	$(MAKE) bonus -C ./includes/libft
 	@echo "$(GREEN)Linux compilation $(CLR_RMV)of $(YELLOW)$(NAME) $(CLR_RMV)..."
-	@chmod 777 mlx_linux/configure
-	@$(MAKE) -C mlx_linux all
+	@chmod 777 includes/mlx_linux/configure
+	@$(MAKE) -C includes/mlx_linux all
 	$(CC) $(FLAGS) -g3 -o $(NAME) $(OBJS) $(FLAG_LINUX) $(LIBFT)
 	@echo "$(GREEN)$(NAME) created [0m ✔️"
 endif
@@ -76,7 +91,7 @@ endif
 ifeq ($(UNAME), Linux)
 fclean: clean
 	@$(RM) $(NAME) -rf $(OBJSDIR)
-	@$(MAKE) -C mlx_linux clean 
+	@$(MAKE) -C ./includes/mlx_linux clean 
 	$(MAKE) fclean -C ./includes/libft
 	@echo "$(RED)Deleting $(CYAN)$(NAME) $(CLR_RMV)binary ✔️"
 endif
