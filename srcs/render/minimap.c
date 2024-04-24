@@ -6,7 +6,7 @@
 /*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 03:51:46 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/04/24 05:02:16 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/04/24 05:08:30 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ void	print_mmap(t_game *game, int x, int y)
 		my_mlx_pixel_put(game, &game->mmap.mmap, x, y, 0xFF0000);
 	else if (game->mmap.map[game->mmap.y][game->mmap.x] == 'P')
 		my_mlx_pixel_put(game, &game->mmap.mmap, x, y, 0x00FF00);
-	if (x >= game->mmap.width / 2 && y >= game->mmap.width / 2
-		&& x < game->mmap.width / 2 + game->mmap.sprite_size && y < game->mmap.width / 2 + game->mmap.sprite_size)
+	if (x >= game->mmap.width / 2 - game->mmap.sprite_size && y >= game->mmap.width / 2 - game->mmap.sprite_size
+		&& x < game->mmap.width / 2 && y < game->mmap.width / 2)
 		my_mlx_pixel_put(game, &game->mmap.mmap, x, y, 0x0000FF);
 }
 void	blend_pixel(t_game *game, int x, int y)
@@ -123,8 +123,8 @@ void	create_minimap(t_game *game)
 	int	pos_x;
 	int	pos_y;
 
-	pos_x = (int)game->mlx.pos_x - game->mmap.size / 2;
-	pos_y = (int)game->mlx.pos_y - game->mmap.size / 2;
+	pos_x = (int)game->mlx.pos_x - game->mmap.size / 2 + 1;
+	pos_y = (int)game->mlx.pos_y - game->mmap.size / 2 + 1;
 	y = 0;
 	//wdsprintf("\n  MINIMAP:\n");
 	while (y < game->mmap.size)
