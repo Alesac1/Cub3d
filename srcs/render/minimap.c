@@ -6,7 +6,7 @@
 /*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 03:51:46 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/04/24 04:40:56 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/04/24 05:02:16 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,8 @@ void	create_minimap(t_game *game)
 	int	pos_x;
 	int	pos_y;
 
-	pos_x = game->mlx.pos_x;
-	pos_y = game->mlx.pos_y;
+	pos_x = (int)game->mlx.pos_x - game->mmap.size / 2;
+	pos_y = (int)game->mlx.pos_y - game->mmap.size / 2;
 	y = 0;
 	//wdsprintf("\n  MINIMAP:\n");
 	while (y < game->mmap.size)
@@ -135,19 +135,19 @@ void	create_minimap(t_game *game)
 			// printf(" width: %d height: %d\n", game->path.width, game->path.height);
 			// printf("Map x: %d y: %d\n", pos_x - 4 + x, pos_y - 4 + y);
 			// printf("Mmap x: %d y: %d\n", x, y);
-			if (pos_x - game->mmap.size / 2 + x < 0 || pos_y - game->mmap.size / 2 + y < 0 || pos_x - game->mmap.size / 2 + x >= game->path.width || pos_y - game->mmap.size / 2 + y >= game->path.height
+			if (pos_x + x < 0 || pos_y + y < 0 || pos_x + x >= game->path.width || pos_y + y >= game->path.height
 				|| x >= game->path.width || y >= game->path.height)
 				game->mmap.map[y][x] = 'N';
-			else if (game->map[pos_y - game->mmap.size / 2 + y][pos_x - game->mmap.size / 2 + x] == '1')
+			else if (game->map[pos_y + y][pos_x + x] == '1')
 				game->mmap.map[y][x] = '1';
-			else if (game->map[pos_y - game->mmap.size / 2 + y][pos_x - game->mmap.size / 2 + x] == '0')
+			else if (game->map[pos_y + y][pos_x + x] == '0')
 				game->mmap.map[y][x] = '0';
-			else if (game->map[pos_y - game->mmap.size / 2 + y][pos_x - game->mmap.size / 2 + x] == '2')
+			else if (game->map[pos_y + y][pos_x + x] == '2')
 				game->mmap.map[y][x] = '2';
-			else if (game->map[pos_y - game->mmap.size / 2 + y][pos_x - game->mmap.size / 2 + x] == 'N'
-				|| game->map[pos_y - game->mmap.size / 2 + y][pos_x - game->mmap.size / 2 + x] == 'S'
-				|| game->map[pos_y - game->mmap.size / 2 + y][pos_x - game->mmap.size / 2 + x] == 'E'
-				|| game->map[pos_y - game->mmap.size / 2 + y][pos_x - game->mmap.size / 2 + x] == 'W')
+			else if (game->map[pos_y + y][pos_x + x] == 'N'
+				|| game->map[pos_y + y][pos_x + x] == 'S'
+				|| game->map[pos_y + y][pos_x + x] == 'E'
+				|| game->map[pos_y + y][pos_x + x] == 'W')
 				game->mmap.map[y][x] = '0';
 			else
 				game->mmap.map[y][x] = 'N';
