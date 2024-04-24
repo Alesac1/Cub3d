@@ -6,7 +6,7 @@
 /*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 03:51:46 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/04/24 01:41:10 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/04/24 02:17:12 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	render_minimap(t_game *game)
 	int	y;
 
 	y = 0;
+	game->mmap.width = game->mlx.width / 8;
+	game->mmap.sprite_size = game->mmap.width / 8;
 	game->mmap.y = 0;
 	create_minimap(game);
 	printf(" width: %d\n", game->mmap.width);
@@ -62,6 +64,22 @@ void	render_minimap(t_game *game)
 	}
 }
 
+void	print_mmap(t_game *game, int x, int y)
+{
+	if (game->mmap.map[game->mmap.y][game->mmap.x] == 'N')
+		return ;
+	if (game->mmap.map[game->mmap.y][game->mmap.x] == '1')
+		my_mlx_pixel_put(game, &game->mmap.mmap, x, y, 0x000000);
+	else if (game->mmap.map[game->mmap.y][game->mmap.x] == '0')
+		my_mlx_pixel_put(game, &game->mmap.mmap, x, y, 0xFFFFFF);
+	else if (game->mmap.map[game->mmap.y][game->mmap.x] == '2')
+		my_mlx_pixel_put(game, &game->mmap.mmap, x, y, 0xFF0000);
+	else if (game->mmap.map[game->mmap.y][game->mmap.x] == 'P')
+		my_mlx_pixel_put(game, &game->mmap.mmap, x, y, 0x00FF00);
+	if (x >= game->mmap.width / 2 && y >= game->mmap.width / 2
+		&& x < game->mmap.width / 2 + 30 && y <= game->mmap.width / 2 + 30)
+		my_mlx_pixel_put(game, &game->mmap.mmap, x, y, 0x0000FF);
+}
 void	blend_pixel(t_game *game, int x, int y)
 {
 	unsigned int	blended_color;
@@ -94,20 +112,6 @@ void	blend_pixel(t_game *game, int x, int y)
 	blended_color = (dst_rgba[0] << 24) | (dst_rgba[1] << 16)
 		| (dst_rgba[2] << 8) | dst_rgba[3];
 	my_mlx_pixel_put(game, &game->mlx.img, x, y, blended_color);
-}
-
-void	print_mmap(t_game *game, int x, int y)
-{
-	if (game->mmap.map[game->mmap.y][game->mmap.x] == 'N')
-		return ;
-	if (game->mmap.map[game->mmap.y][game->mmap.x] == '1')
-		my_mlx_pixel_put(game, &game->mmap.mmap, x, y, 0x000000);
-	else if (game->mmap.map[game->mmap.y][game->mmap.x] == '0')
-		my_mlx_pixel_put(game, &game->mmap.mmap, x, y, 0xFFFFFF);
-	else if (game->mmap.map[game->mmap.y][game->mmap.x] == '2')
-		my_mlx_pixel_put(game, &game->mmap.mmap, x, y, 0xFF0000);
-	else if (game->mmap.map[game->mmap.y][game->mmap.x] == 'P')
-		my_mlx_pixel_put(game, &game->mmap.mmap, x, y, 0x00FF00);
 }
 
 void	create_minimap(t_game *game)
