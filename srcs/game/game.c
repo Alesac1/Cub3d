@@ -16,6 +16,7 @@ void	start_game(t_game *game)
 {
 	mlx_hook(game->mlx.window, 17, 0, &click_x, game);
 	mlx_loop_hook(game->mlx.mlx, &game_loop, game);
+	mlx_hook(game->mlx.window, 6, 1L << 6, &mouse_position, game);
 	mlx_hook(game->mlx.window, 3, 1L << 1, &handle_keyrelease, game);
 	mlx_hook(game->mlx.window, 2, 1L << 0, &handle_keypress, game);
 	mlx_loop(game->mlx.mlx);
