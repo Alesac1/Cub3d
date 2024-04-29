@@ -64,6 +64,7 @@ int	click_x(t_game *game)
 	mlx_destroy_image(game->mlx.mlx, game->mlx.door.img);
 	mlx_destroy_image(game->mlx.mlx, game->mlx.img.img);
 	mlx_destroy_window(game->mlx.mlx, game->mlx.window);
+	mlx_destroy_display(game->mlx.mlx);
 	close_all(game, 3);
 	return (0);
 }

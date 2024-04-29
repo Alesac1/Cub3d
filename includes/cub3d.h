@@ -5,7 +5,6 @@
 # include "libft/libft.h"
 # include <stdio.h>
 # include <stdlib.h>
-# include "minilibx/mlx.h"
 # include "mlx_linux/mlx.h"
 # include <sys/time.h>
 # include <math.h>
