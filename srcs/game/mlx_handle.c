@@ -63,12 +63,12 @@ int	handle_keypress(int keycode, t_game *game)
 	if (keycode == XK_Left)
 	{
 		game->moves.l = 1;
-		game->moves.rot_speed = -.05;
+		game->moves.rot_speed = .05;
 	}
 	if (keycode == XK_Right)
 	{
 		game->moves.r = 1;
-		game->moves.rot_speed = .05;
+		game->moves.rot_speed = -.05;
 	}
 	if (keycode == 101)
 		game->doors[(int)game->walls_data.c_y]
