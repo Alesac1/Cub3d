@@ -12,7 +12,7 @@
 
 #include "../../includes/cub3d.h"
 
-	void	check_args(t_game *game, int argc, const char **argv, int *fd)
+void	check_args(t_game *game, int argc, const char **argv, int *fd)
 {
 	int	map_counter;
 
@@ -30,7 +30,6 @@
 	check_map(game, game->map);
 	door_matrix(game);
 }
-
 
 int	alloc_args(t_game *game, int *fd, int *map_counter)
 {
@@ -87,7 +86,7 @@ int	full_check(t_game *game)
 				if (game->path.south != DEFAULT)
 					if (game->path.cealing != DEFAULT)
 						if (game->path.floor != DEFAULT)
-								return(1) ;
+							return (1);
 	return (0);
 }
 

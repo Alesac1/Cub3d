@@ -11,10 +11,11 @@
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-void realloc_map(t_game *game)
+
+void	realloc_map(t_game *game)
 {
-	int i;
-	int r;
+	int	i;
+	int	r;
 
 	i = -1;
 	while (++i > -1 && game->map[i])
@@ -31,10 +32,10 @@ void realloc_map(t_game *game)
 	}
 }
 
-char *realloc_line(char *line, int width)
+char	*realloc_line(char *line, int width)
 {
-	char *new_line;
-	int i;
+	char	*new_line;
+	int		i;
 
 	i = 0;
 	// if (ft_empty(line))

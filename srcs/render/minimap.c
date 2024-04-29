@@ -6,7 +6,7 @@
 /*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 03:51:46 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/04/24 05:08:30 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/04/29 13:11:56 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	initminimap(t_game *game)
 		print_error("Error! Malloc failed!\n", game, 0);
 	while (i < (game->mmap.size + 1))
 	{
-		game->mmap.map[i] = (char *)malloc(sizeof(char) * (game->mmap.size + 1));
+		game->mmap.map[i] = (char *)malloc(sizeof(char)
+				* (game->mmap.size + 1));
 		if (!game->mmap.map[i])
 			print_error("Error! Malloc failed!\n", game, 0);
 		i++;
@@ -45,7 +46,6 @@ void	render_minimap(t_game *game)
 	game->mmap.y = 0;
 	initminimap(game);
 	create_minimap(game);
-	//printf(" width: %d\n", game->mmap.width);
 	while (y <= game->mmap.width)
 	{
 		x = 0;
@@ -54,13 +54,14 @@ void	render_minimap(t_game *game)
 		{
 			print_mmap(game, x, y);
 			blend_pixel(game, x, y);
-			// my_mlx_pixel_put(game, &game->mlx.img, x, y, get_pixel(&game->mmap.mmap, x, y));
 			x++;
-			if (x % game->mmap.sprite_size == 0 && game->mmap.x + 1 < game->mmap.size)
+			if (x % game->mmap.sprite_size == 0 && game->mmap.x + 1
+				< game->mmap.size)
 				game->mmap.x++;
 		}
 		y++;
-		if (y % game->mmap.sprite_size == 0 && game->mmap.y + 1 < game->mmap.size)
+		if (y % game->mmap.sprite_size == 0 && game->mmap.y + 1
+			< game->mmap.size)
 			game->mmap.y++;
 	}
 	freemmap(game);
@@ -78,10 +79,12 @@ void	print_mmap(t_game *game, int x, int y)
 		my_mlx_pixel_put(game, &game->mmap.mmap, x, y, 0xFF0000);
 	else if (game->mmap.map[game->mmap.y][game->mmap.x] == 'P')
 		my_mlx_pixel_put(game, &game->mmap.mmap, x, y, 0x00FF00);
-	if (x >= game->mmap.width / 2 - game->mmap.sprite_size && y >= game->mmap.width / 2 - game->mmap.sprite_size
+	if (x >= game->mmap.width / 2 - game->mmap.sprite_size
+		&& y >= game->mmap.width / 2 - game->mmap.sprite_size
 		&& x < game->mmap.width / 2 && y < game->mmap.width / 2)
 		my_mlx_pixel_put(game, &game->mmap.mmap, x, y, 0x0000FF);
 }
+
 void	blend_pixel(t_game *game, int x, int y)
 {
 	unsigned int	blended_color;
@@ -132,10 +135,12 @@ void	create_minimap(t_game *game)
 		x = 0;
 		while (x < game->mmap.size)
 		{
-			// printf(" width: %d height: %d\n", game->path.width, game->path.height);
+			// printf(" width: %d height: %d\n",
+				//game->path.width, game->path.height);
 			// printf("Map x: %d y: %d\n", pos_x - 4 + x, pos_y - 4 + y);
 			// printf("Mmap x: %d y: %d\n", x, y);
-			if (pos_x + x < 0 || pos_y + y < 0 || pos_x + x >= game->path.width || pos_y + y >= game->path.height
+			if (pos_x + x < 0 || pos_y + y < 0 || pos_x + x >= game->path.width
+				|| pos_y + y >= game->path.height
 				|| x >= game->path.width || y >= game->path.height)
 				game->mmap.map[y][x] = 'N';
 			else if (game->map[pos_y + y][pos_x + x] == '1')

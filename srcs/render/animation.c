@@ -6,16 +6,16 @@
 /*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:34:34 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/04/23 16:47:04 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/04/29 13:04:21 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void    animation(t_game *game)
+void	animation(t_game *game)
 {
-	int     x;
-	int     y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (y < game->path.height)
@@ -26,7 +26,7 @@ void    animation(t_game *game)
 			if (game->doors[y][x].door == 0)
 			{
 				x++;
-				continue;
+				continue ;
 			}
 			if (game->doors[y][x].direction == 1)
 			{
@@ -51,5 +51,29 @@ void    animation(t_game *game)
 			x++;
 		}
 		y++;
+	}
+}
+
+void	set_pos(t_game *game)
+{
+	if (game->spawn.direction == 'W')
+	{
+		game->mlx.dir_x = -1;
+		game->mlx.plane_y = 0.66;
+	}
+	if (game->spawn.direction == 'E')
+	{
+		game->mlx.dir_x = 1;
+		game->mlx.plane_y = -0.66;
+	}
+	if (game->spawn.direction == 'N')
+	{
+		game->mlx.dir_y = -1;
+		game->mlx.plane_x = -0.66;
+	}
+	if (game->spawn.direction == 'S')
+	{
+		game->mlx.dir_y = 1;
+		game->mlx.plane_x = 0.66;
 	}
 }

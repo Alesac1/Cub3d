@@ -42,7 +42,7 @@ void	close_all(t_game *game, int r)
 
 	if (r == 0)
 		exit(0);
-	free_path(game);	
+	free_path(game);
 	if (r != 3)
 		exit(0);
 	i = 0;

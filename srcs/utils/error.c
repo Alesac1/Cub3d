@@ -11,15 +11,16 @@
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
 int	print_error(char *str, t_game *game, int i)
 {
-	ft_putstr_fd(str, 2);
-	close_all(game, i);
-	return(0);
+	ft_putstr_fd (str, 2);
+	close_all (game, i);
+	return (0);
 }
 
 void	invalid_map_error(t_game *game, char *line)
 {
 	free (line);
-	print_error("Error! Invalid Map!\n", game, 0);	
+	print_error ("Error! Invalid Map!\n", game, 0);
 }

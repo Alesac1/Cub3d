@@ -20,8 +20,8 @@ void	set_vars(t_game *game)
 	game->mlx.dir_y = 0;
 	game->mlx.plane_x = 0;
 	game->mlx.plane_y = 0;
-	game->mlx.width = 1920;
-	game->mlx.height = 1080;
+	game->mlx.width = 1300;
+	game->mlx.height = 760;
 	set_pos(game);
 	game->moves.rot_speed = 0;
 	game->moves.move_speed = 0;
@@ -59,8 +59,8 @@ void	load_imgs(t_game *game)
 			&r, &z);
 	if (!game->mlx.no.img)
 		print_error("ERROR. Invalid textures.", game, 0);
-	game->mlx.door.img = mlx_xpm_file_to_image(game->mlx.mlx, "./textures/door.xpm",
-			&r, &z);
+	game->mlx.door.img = mlx_xpm_file_to_image(game->mlx.mlx,
+			"./textures/door.xpm", &r, &z);
 	if (!game->mlx.door.img)
 		print_error("ERROR. Invalid textures.", game, 0);
 	get_addresses(game);
@@ -69,7 +69,8 @@ void	load_imgs(t_game *game)
 void	init_mlx(t_game *game)
 {
 	game->mlx.mlx = mlx_init();
-	game->mlx.img.img = mlx_new_image(game->mlx.mlx, game->mlx.width, game->mlx.height);
+	game->mlx.img.img
+		= mlx_new_image(game->mlx.mlx, game->mlx.width, game->mlx.height);
 	game->mlx.img.addr = mlx_get_data_addr(game->mlx.img.img,
 			&game->mlx.img.bits_per_pixel, &game->mlx.img.line_length,
 			&game->mlx.img.endian);
@@ -79,14 +80,13 @@ void	init_mlx(t_game *game)
 		0, 0);
 }
 
+	//render_things(game);
 void	init_game(t_game *game)
 {
 	set_vars(game);
 	init_mlx(game);
 	load_imgs(game);
-	//render_things(game);
 }
-
 
 void	init_struct(t_game *game)
 {
@@ -101,28 +101,26 @@ void	init_struct(t_game *game)
 	game->path.allocated = 0;
 }
 
-
-void	set_pos(t_game *game)
-{
-	if (game->spawn.direction == 'W')
-	{
-		game->mlx.dir_x = -1;
-		game->mlx.plane_y = 0.66;
-	}
-	if (game->spawn.direction == 'E')
-	{
-		game->mlx.dir_x = 1;
-		game->mlx.plane_y = -0.66;
-	}
-	if (game->spawn.direction == 'N')
-	{
-		game->mlx.dir_y = -1;
-		game->mlx.plane_x = -0.66;
-	}
-	if (game->spawn.direction == 'S')
-	{
-		game->mlx.dir_y = 1;
-		game->mlx.plane_x = 0.66;
-	}
-	
-}
+// void	set_pos(t_game *game)
+// {
+// 	if (game->spawn.direction == 'W')
+// 	{
+// 		game->mlx.dir_x = -1;
+// 		game->mlx.plane_y = 0.66;
+// 	}
+// 	if (game->spawn.direction == 'E')
+// 	{
+// 		game->mlx.dir_x = 1;
+// 		game->mlx.plane_y = -0.66;
+// 	}
+// 	if (game->spawn.direction == 'N')
+// 	{
+// 		game->mlx.dir_y = -1;
+// 		game->mlx.plane_x = -0.66;
+// 	}
+// 	if (game->spawn.direction == 'S')
+// 	{
+// 		game->mlx.dir_y = 1;
+// 		game->mlx.plane_x = 0.66;
+// 	}
+// }

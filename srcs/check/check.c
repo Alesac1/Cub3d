@@ -11,18 +11,19 @@
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-int check_exts(char *map)
+
+int	check_exts(char *map)
 {
-	if (map[ft_strlen(map) - 1] == 'b' && map[ft_strlen(map) - 2] == 'u' 
+	if (map[ft_strlen(map) - 1] == 'b' && map[ft_strlen(map) - 2] == 'u'
 		&& map[ft_strlen(map) - 3] == 'c' && map[ft_strlen(map)-4] == '.')
-        return (0);
-    return (1);
+		return (0);
+	return (1);
 }
 
-void pop_map(t_game *game, int *fd, int *map_counter)
+void	pop_map(t_game *game, int *fd, int *map_counter)
 {
-	char 	*line;
-	int 	i;
+	char	*line;
+	int		i;
 
 	i = 0;
 	line = 0;
@@ -66,7 +67,7 @@ void	check_map(t_game *game, char **map)
 	}
 }
 
-void check_params(t_game *game)
+void	check_params(t_game *game)
 {
 	if (!full_check(game))
 		print_error("Error! wrong map!\n", game, 3);
@@ -74,9 +75,10 @@ void check_params(t_game *game)
 	check_colors(game, game->path.floor, &game->floor_color);
 }
 
-char *next_line(char **line, int *fd, int *map_counter)
+char	*next_line(char **line, int *fd, int *map_counter)
 {
-	char *l;
+	char	*l;
+
 	free(*line);
 	l = get_next_line(*fd);
 	(*map_counter)++;
