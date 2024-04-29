@@ -6,7 +6,7 @@
 /*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:27:39 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/04/20 19:15:23 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:47:19 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	door_matrix(t_game *game)
 	int	j;
 
 	i = 0;
-	game->doors = malloc(sizeof(t_obj *) * game->path.height);
-	while (i < game->path.height)
+	game->doors = malloc(sizeof(t_obj *) * game->p.height);
+	while (i < game->p.height)
 	{
 		j = 0;
-		game->doors[i] = malloc(sizeof(t_obj) * game->path.width);
-		while (j < game->path.width)
+		game->doors[i] = malloc(sizeof(t_obj) * game->p.width);
+		while (j < game->p.width)
 		{
 			if (game->map[i][j] == '2')
 				game->doors[i][j].door = 1;

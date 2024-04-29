@@ -21,19 +21,19 @@ double	ft_double(int b, double t, double f)
 
 void	free_path(t_game *game)
 {
-	free(game->path.file_name);
-	if (game->path.allocated >= 1)
-		free(game->path.north);
-	if (game->path.allocated >= 2)
-		free(game->path.east);
-	if (game->path.allocated >= 3)
-		free(game->path.south);
-	if (game->path.allocated >= 4)
-		free(game->path.west);
-	if (game->path.allocated >= 5)
-		free(game->path.cealing);
-	if (game->path.allocated >= 6)
-		free(game->path.floor);
+	free(game->p.file_name);
+	if (game->p.allocated >= 1)
+		free(game->p.n);
+	if (game->p.allocated >= 2)
+		free(game->p.e);
+	if (game->p.allocated >= 3)
+		free(game->p.s);
+	if (game->p.allocated >= 4)
+		free(game->p.w);
+	if (game->p.allocated >= 5)
+		free(game->p.cealing);
+	if (game->p.allocated >= 6)
+		free(game->p.floor);
 }
 
 void	close_all(t_game *game, int r)

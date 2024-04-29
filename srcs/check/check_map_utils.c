@@ -21,13 +21,13 @@ void	realloc_map(t_game *game)
 	while (++i > -1 && game->map[i])
 	{
 		r = ft_strlen(game->map[i]);
-		if (r > game->path.width)
-			game->path.width = (r);
+		if (r > game->p.width)
+			game->p.width = (r);
 	}
 	i = 0;
 	while (game->map[i])
 	{
-		game->map[i] = realloc_line(game->map[i], game->path.width);
+		game->map[i] = realloc_line(game->map[i], game->p.width);
 		i++;
 	}
 }
@@ -63,12 +63,12 @@ char	*alloc_mtx(t_game *game, char *line, int *fd, int *map_counter)
 		if (line)
 			free(line);
 		line = get_next_line(*fd);
-		game->path.height++;
+		game->p.height++;
 	}
 	close(*fd);
-	game->map = malloc(sizeof(char *) * (game->path.height + 1));
-	game->map[game->path.height] = '\0';
-	*fd = open (game->path.file_name, O_RDONLY);
+	game->map = malloc(sizeof(char *) * (game->p.height + 1));
+	game->map[game->p.height] = '\0';
+	*fd = open (game->p.file_name, O_RDONLY);
 	while (*map_counter > 0)
 	{
 		line = next_line(&line, fd, &z);

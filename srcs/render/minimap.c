@@ -6,7 +6,7 @@
 /*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 03:51:46 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/04/29 13:11:56 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:47:57 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,12 +136,12 @@ void	create_minimap(t_game *game)
 		while (x < game->mmap.size)
 		{
 			// printf(" width: %d height: %d\n",
-				//game->path.width, game->path.height);
+				//game->p.width, game->p.height);
 			// printf("Map x: %d y: %d\n", pos_x - 4 + x, pos_y - 4 + y);
 			// printf("Mmap x: %d y: %d\n", x, y);
-			if (pos_x + x < 0 || pos_y + y < 0 || pos_x + x >= game->path.width
-				|| pos_y + y >= game->path.height
-				|| x >= game->path.width || y >= game->path.height)
+			if (pos_x + x < 0 || pos_y + y < 0 || pos_x + x >= game->p.width
+				|| pos_y + y >= game->p.height
+				|| x >= game->p.width || y >= game->p.height)
 				game->mmap.map[y][x] = 'N';
 			else if (game->map[pos_y + y][pos_x + x] == '1')
 				game->mmap.map[y][x] = '1';

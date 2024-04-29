@@ -19,8 +19,8 @@ void	check_args(t_game *game, int argc, const char **argv, int *fd)
 	map_counter = 0;
 	if (argc != 2 || check_exts((char *)argv[1]))
 		print_error("Error! invalid or missing map!\n", game, 0);
-	game->path.file_name = ft_strdup((char *)argv[1]);
-	*fd = open(game->path.file_name, O_RDONLY);
+	game->p.file_name = ft_strdup((char *)argv[1]);
+	*fd = open(game->p.file_name, O_RDONLY);
 	if (*fd == -1)
 		print_error("Error! Wrong path!\n", game, 0);
 	init_struct(game);
@@ -58,34 +58,34 @@ int	alloc_args(t_game *game, int *fd, int *map_counter)
 
 void	pop_args(char *line, t_game *game)
 {
-	if (!ft_strncmp(line, "NO", 2) && game->path.north == DEFAULT)
-		game->path.north = ft_strtrim(line + 3, " \n");
-	else if (!ft_strncmp(line, "EA", 2) && game->path.east == DEFAULT)
-		game->path.east = ft_strtrim(line + 3, " \n");
-	else if (!ft_strncmp(line, "SO", 2) && game->path.south == DEFAULT)
-		game->path.south = ft_strtrim(line + 3, " \n");
-	else if (!ft_strncmp(line, "WE", 2) && game->path.west == DEFAULT)
-		game->path.west = ft_strtrim(line + 3, " \n");
-	else if (!ft_strncmp(line, "C", 1) && game->path.cealing == DEFAULT)
-		game->path.cealing = ft_strtrim(line + 2, " \n");
-	else if (!ft_strncmp(line, "F", 1) && game->path.floor == DEFAULT)
-		game->path.floor = ft_strtrim(line + 2, " \n");
+	if (!ft_strncmp(line, "NO", 2) && game->p.n == DEFAULT)
+		game->p.n = ft_strtrim(line + 3, " \n");
+	else if (!ft_strncmp(line, "EA", 2) && game->p.e == DEFAULT)
+		game->p.e = ft_strtrim(line + 3, " \n");
+	else if (!ft_strncmp(line, "SO", 2) && game->p.s == DEFAULT)
+		game->p.s = ft_strtrim(line + 3, " \n");
+	else if (!ft_strncmp(line, "WE", 2) && game->p.w == DEFAULT)
+		game->p.w = ft_strtrim(line + 3, " \n");
+	else if (!ft_strncmp(line, "C", 1) && game->p.cealing == DEFAULT)
+		game->p.cealing = ft_strtrim(line + 2, " \n");
+	else if (!ft_strncmp(line, "F", 1) && game->p.floor == DEFAULT)
+		game->p.floor = ft_strtrim(line + 2, " \n");
 	else
 	{
 		free(line);
 		print_error("Wrong map!\n", game, 1);
 	}
-	game->path.allocated++;
+	game->p.allocated++;
 }
 
 int	full_check(t_game *game)
 {
-	if (game->path.north != DEFAULT)
-		if (game->path.west != DEFAULT)
-			if (game->path.east != DEFAULT)
-				if (game->path.south != DEFAULT)
-					if (game->path.cealing != DEFAULT)
-						if (game->path.floor != DEFAULT)
+	if (game->p.n != DEFAULT)
+		if (game->p.w != DEFAULT)
+			if (game->p.e != DEFAULT)
+				if (game->p.s != DEFAULT)
+					if (game->p.cealing != DEFAULT)
+						if (game->p.floor != DEFAULT)
 							return (1);
 	return (0);
 }

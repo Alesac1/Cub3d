@@ -6,7 +6,7 @@
 /*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:34:34 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/04/29 13:04:21 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:47:32 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	animation(t_game *game)
 	int	y;
 
 	y = 0;
-	while (y < game->path.height)
+	while (y < game->p.height)
 	{
 		x = 0;
-		while (x < game->path.width)
+		while (x < game->p.width)
 		{
 			if (game->doors[y][x].door == 0)
 			{

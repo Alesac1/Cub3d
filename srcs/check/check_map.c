@@ -18,7 +18,7 @@ void	check_right(t_game *game, char **map)
 	int	x;
 
 	i = 0;
-	x = game->path.width;
+	x = game->p.width;
 	while (map[i])
 	{
 		while (map[i][x])
@@ -30,7 +30,7 @@ void	check_right(t_game *game, char **map)
 			else
 				print_error("Error! wrong map!\n", game, 3);
 		}
-		x = game->path.width;
+		x = game->p.width;
 		i++;
 	}
 }
@@ -68,7 +68,7 @@ void	check_up_down(t_game *game, char **map)
 	x = 0;
 	while (map[i][x])
 	{
-		if (i == 0 || i == game->path.height)
+		if (i == 0 || i == game->p.height)
 		{
 			x = 0;
 			while (map[i][x])
@@ -91,19 +91,19 @@ void	check_borders(t_game *game, char **map, int i, int x)
 	if ((x - 1) >= 0)
 		if ((map[i][x - 1] != ' ' && map[i][x - 1] != '1'))
 			print_error("Error! Invalid map!\n", game, 0);
-	if ((i + 1) < game->path.height)
+	if ((i + 1) < game->p.height)
 		if ((map[i + 1][x] != ' ' && map[i + 1][x] != '1'))
 			print_error("Error! Invalid map!\n", game, 0);
-	if ((x + 1) < game->path.width)
+	if ((x + 1) < game->p.width)
 		if ((map[i][x + 1] != ' ' && map[i][x + 1] != '1'))
 			print_error("Error! Invalid map!\n", game, 0);
-	if ((i + 1) < game->path.height && (x + 1) < game->path.width)
+	if ((i + 1) < game->p.height && (x + 1) < game->p.width)
 		if ((map[i + 1][x + 1] != ' ' && map[i + 1][x + 1] != '1'))
 			print_error("Error! Invalid map!\n", game, 0);
-	if ((i + 1) < game->path.height && (x - 1) >= 0)
+	if ((i + 1) < game->p.height && (x - 1) >= 0)
 		if ((map[i + 1][x - 1] != ' ' && map[i + 1][x - 1] != '1'))
 			print_error("Error! Invalid map!\n", game, 0);
-	if ((i - 1) >= 0 && (x + 1) < game->path.width)
+	if ((i - 1) >= 0 && (x + 1) < game->p.width)
 		if ((map[i - 1][x + 1] != ' ' && map[i - 1][x + 1] != '1'))
 			print_error("Error! Invalid map!\n", game, 0);
 	if ((i - 1) >= 0 && (x - 1) >= 0)

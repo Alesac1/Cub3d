@@ -38,10 +38,10 @@ typedef struct s_rgb
 
 typedef struct s_map
 {
-	char			*north;
-	char			*south;
-	char			*east;
-	char			*west;
+	char			*n;
+	char			*s;
+	char			*e;
+	char			*w;
 	char			*cealing;
 	char			*floor;
 	int				height;
@@ -159,7 +159,7 @@ typedef struct s_mmap
 typedef struct s_game
 {
 	struct s_mlx	mlx;
-	struct s_map	path;
+	struct s_map	p;
 	struct s_rgb	floor_color;
 	struct s_rgb	ceiling_color;
 	struct s_spawn	spawn;

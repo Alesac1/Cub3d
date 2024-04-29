@@ -71,8 +71,8 @@ void	check_params(t_game *game)
 {
 	if (!full_check(game))
 		print_error("Error! wrong map!\n", game, 3);
-	check_colors(game, game->path.cealing, &game->ceiling_color);
-	check_colors(game, game->path.floor, &game->floor_color);
+	check_colors(game, game->p.cealing, &game->ceiling_color);
+	check_colors(game, game->p.floor, &game->floor_color);
 }
 
 char	*next_line(char **line, int *fd, int *map_counter)
