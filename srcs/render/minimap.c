@@ -6,7 +6,7 @@
 /*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 03:51:46 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/04/29 14:47:57 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:41:16 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,4 +175,6 @@ void	freemmap(t_game *game)
 		i++;
 	}
 	free(game->mmap.map);
+	mlx_destroy_image(game->mlx.mlx, game->mmap.mmap.img);
+
 }

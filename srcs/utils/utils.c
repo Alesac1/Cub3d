@@ -49,8 +49,10 @@ void	close_all(t_game *game, int r)
 	while (game->map[i])
 	{
 		free(game->map[i]);
+		free(game->doors[i]);
 		i++;
 	}
+	free(game->doors);
 	free(game->map);
 	exit(0);
 }
