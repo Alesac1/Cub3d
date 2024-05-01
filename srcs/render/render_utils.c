@@ -63,3 +63,21 @@ void	my_mlx_pixel_put(t_game *game, t_img *data, int x, int y, int color)
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
+
+void	black_screen(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < game->mlx.init_h)
+	{
+		x = 0;
+		while (x < game->mlx.init_w)
+		{
+			my_mlx_pixel_put(game, &game->mlx.img, x, y, 0);
+			x++;
+		}
+		y++;
+	}
+}

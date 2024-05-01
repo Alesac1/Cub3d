@@ -20,8 +20,8 @@ void	set_vars(t_game *game)
 	game->mlx.dir_y = 0;
 	game->mlx.plane_x = 0;
 	game->mlx.plane_y = 0;
-	game->mlx.width = 1300;
-	game->mlx.height = 760;
+	game->mlx.width = 3840;
+	game->mlx.height = 2160;
 	game->mlx.init_w = game->mlx.width;
 	game->mlx.init_h = game->mlx.height;
 	set_pos(game);

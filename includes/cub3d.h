@@ -236,5 +236,7 @@ void				print_mmap(t_game *game, int x, int y);
 void				create_minimap(t_game *game);
 void				freemmap(t_game *game);
 int					mouse_position(int x, int y, void *param);
+void				black_screen(t_game *game);
+void				move_release(t_game *game, int keycode);
 
 #endif
