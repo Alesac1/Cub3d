@@ -83,7 +83,7 @@ void	set_data(t_game *game, t_walls *data, t_mlx *mlx, int x)
 }
 
 void	check_distance(t_game *game, t_walls *data, char **map, int x)
-{
+{	
 	while (data->hit == 0)
 	{
 		if (data->side_dist_x < data->side_dist_y)

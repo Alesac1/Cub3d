@@ -26,6 +26,8 @@
 # define XK_d 100
 # define XK_Left 65361
 # define XK_Right 65363
+# define XK_up 65362
+# define XK_down 65364
 
 
 typedef struct s_rgb
@@ -90,6 +92,8 @@ typedef struct s_mlx
 	double			plane_y;
 	double			time;
 	double			old_time;
+	int				init_w;
+	int				init_h;
 } 			t_mlx;
 
 typedef struct s_obj

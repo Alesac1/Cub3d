@@ -22,6 +22,8 @@ void	set_vars(t_game *game)
 	game->mlx.plane_y = 0;
 	game->mlx.width = 1300;
 	game->mlx.height = 760;
+	game->mlx.init_w = game->mlx.width;
+	game->mlx.init_h = game->mlx.height;
 	set_pos(game);
 	game->moves.rot_speed = 0;
 	game->moves.move_speed = 0;
