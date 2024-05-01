@@ -6,7 +6,7 @@
 /*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:50:36 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/05/01 23:21:24 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/05/01 23:46:35 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,7 +224,7 @@ void				set_vars(t_game *game);
 double				ft_double(int b, double t, double f);
 unsigned int		get_pixel(t_img *img, int x, int y);
 void				init_mlx(t_game *game);
-void				check_doors(t_game *game, char **map);
+void				hit_position(t_game *game, char **map);
 void				move_forward(t_game *game);
 void				move_side(t_game *game);
 void				rotate_camera(t_game *game);
@@ -250,5 +250,6 @@ int					mouse_position(int x, int y, void *param);
 void				black_screen(t_game *game);
 void				move_release(t_game *game, int keycode);
 void				mmap_assign(t_game *game, int x, int y);
+void				print_wall(t_game *game, t_walls *data, int x, int y);
 
 #endif
