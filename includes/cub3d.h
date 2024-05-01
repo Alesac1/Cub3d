@@ -6,7 +6,7 @@
 /*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:50:36 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/05/01 23:46:35 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/05/01 23:51:41 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,8 @@ typedef struct s_colors
 
 int					check_exts(char *map);
 void				start_game(t_game *game);
-void				check_args(t_game *game, int argc, const char **argv, int *fd);
+void				check_args(t_game *game, int argc, const char **argv,
+						int *fd);
 int					click_x(t_game *game);
 void				check_params(t_game *game);
 void				pop_map(t_game *game, int *fd, int *map_counter);
@@ -205,8 +206,10 @@ int					print_error(char *str, t_game *game, int i);
 void				init_struct(t_game *game);
 char				*next_line(char **line, int *fd, int *map_counter);
 void				free_rgb(char **rgb);
-char				*skip_empty_lines(t_game *game, char *line, int *fd, int *map_counter);
-char				*alloc_mtx(t_game *game, char *line, int *fd, int *map_counter);
+char				*skip_empty_lines(t_game *game, char *line, int *fd,
+						int *map_counter);
+char				*alloc_mtx(t_game *game, char *line, int *fd,
+						int *map_counter);
 void				invalid_map_error(t_game *game, char *line);
 char				*realloc_line(char *line, int width);
 void				realloc_map(t_game *game);
@@ -238,7 +241,8 @@ void				render_walls(t_game *game);
 void				door_matrix(t_game *game);
 void				animation(t_game *game);
 void				my_mlx_pixel_put(t_img *data, int x, int y, int color);
-void				check_distance(t_game *game, t_walls *data, char **map, int x);
+void				check_distance(t_game *game, t_walls *data,
+						char **map, int x);
 void				render_y(t_game	*game, t_mlx *mlx, int x);
 void				set_data(t_game *game, t_walls *data, t_mlx *mlx, int x);
 void				render_minimap(t_game *game);
