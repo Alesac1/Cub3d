@@ -23,9 +23,9 @@ void	render_floor_ceiling(t_game *game)
 		x = 0;
 		while (x < game->mlx.width)
 		{
-			my_mlx_pixel_put(game, &game->mlx.img, game->mlx.width - x,
+			my_mlx_pixel_put(&game->mlx.img, game->mlx.width - x,
 				y, game->floor_color.hex);
-			my_mlx_pixel_put(game, &game->mlx.img, game->mlx.width - x,
+			my_mlx_pixel_put(&game->mlx.img, game->mlx.width - x,
 				game->mlx.height - y - 1, game->ceiling_color.hex);
 			x++;
 		}
@@ -134,24 +134,24 @@ void	render_y(t_game	*game, t_mlx *mlx, int x)
 		if (data->hit == 1)
 		{
 			if (data->side != 0 && data->step_y == -1)
-				my_mlx_pixel_put(game, &mlx->img, game->mlx.width - x, y,
+				my_mlx_pixel_put(&mlx->img, game->mlx.width - x, y,
 					get_pixel(&mlx->no, data->tex_x, data->tex_y));
 			else if (data->side != 0 && data->step_y == 1)
-				my_mlx_pixel_put(game, &mlx->img, game->mlx.width - x, y,
+				my_mlx_pixel_put(&mlx->img, game->mlx.width - x, y,
 					get_pixel(&mlx->so, data->tex_x, data->tex_y));
 			else if (data->step_x == -1)
-				my_mlx_pixel_put(game, &mlx->img, game->mlx.width - x, y,
+				my_mlx_pixel_put(&mlx->img, game->mlx.width - x, y,
 					get_pixel(&mlx->we, data->tex_x, data->tex_y));
 			else if (data->step_x == 1)
-				my_mlx_pixel_put(game, &mlx->img, game->mlx.width - x, y,
+				my_mlx_pixel_put(&mlx->img, game->mlx.width - x, y,
 					get_pixel(&mlx->ea, data->tex_x, data->tex_y));
 		}
 		else if (data->hit == 2 && ((data->side == 0 && data->ray_dir_x > 0) || (data->side == 1 && data->ray_dir_y < 0)))
-			my_mlx_pixel_put(game, &mlx->img, game->mlx.width - x, y,
+			my_mlx_pixel_put(&mlx->img, game->mlx.width - x, y,
 				get_pixel(&mlx->door, (data->tex_x + (int)(game->doors[game->walls_data.map_y][game->walls_data.map_x].open
 							* TEXWIDTH)) % TEXWIDTH, data->tex_y));
 		else if (data->hit == 2)
-			my_mlx_pixel_put(game, &mlx->img, game->mlx.width - x, y,
+			my_mlx_pixel_put(&mlx->img, game->mlx.width - x, y,
 				get_pixel(&mlx->door, (int)(data->tex_x + ((1 - game->doors[game->walls_data.map_y][game->walls_data.map_x].open)
 							* TEXWIDTH)) % TEXWIDTH, data->tex_y));
 		y++;

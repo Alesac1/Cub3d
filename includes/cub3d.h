@@ -226,7 +226,7 @@ void				render_floor_ceiling(t_game *game);
 void				render_walls(t_game *game);
 void				door_matrix(t_game *game);
 void 			   	animation(t_game *game);
-void				my_mlx_pixel_put(t_game *game, t_img *data, int x, int y, int color);
+void				my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void				check_distance(t_game *game, t_walls *data, char **map, int x);
 void				render_y(t_game	*game, t_mlx *mlx, int x);
 void				set_data(t_game *game, t_walls *data, t_mlx *mlx, int x);
@@ -238,5 +238,6 @@ void				freemmap(t_game *game);
 int					mouse_position(int x, int y, void *param);
 void				black_screen(t_game *game);
 void				move_release(t_game *game, int keycode);
+void					mmap_assign(t_game *game, int x, int y);
 
 #endif

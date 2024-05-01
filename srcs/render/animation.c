@@ -6,7 +6,7 @@
 /*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:34:34 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/04/29 14:47:32 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/05/01 21:57:14 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,34 +23,30 @@ void	animation(t_game *game)
 		x = 0;
 		while (x < game->p.width)
 		{
-			if (game->doors[y][x].door == 0)
-			{
-				x++;
-				continue ;
-			}
-			if (game->doors[y][x].direction == 1)
-			{
-				// printf("closing\n");
-				game->doors[y][x].open += 0.01;
-			}
-			else if (game->doors[y][x].direction == -1)
-			{
-				// printf("opening\n");
-				game->doors[y][x].open -= 0.01;
-			}
-			if (game->doors[y][x].open <= 0)
-			{
-				game->doors[y][x].direction = 1;
-				game->doors[y][x].open = 0;
-			}
-			else if (game->doors[y][x].open >= 1)
-			{
-				game->doors[y][x].direction = 0;
-				game->doors[y][x].open = 1;
-			}
+			door_anim(game, x, y);
 			x++;
 		}
 		y++;
+	}
+}
+
+void	door_anim(t_game *game, int x, int y)
+{
+	if (game->doors[y][x].door == 0)
+		return ;
+	if (game->doors[y][x].direction == 1)
+		game->doors[y][x].open += 0.01;
+	else if (game->doors[y][x].direction == -1)
+		game->doors[y][x].open -= 0.01;
+	if (game->doors[y][x].open <= 0)
+	{
+		game->doors[y][x].direction = 1;
+		game->doors[y][x].open = 0;
+	}
+	else if (game->doors[y][x].open >= 1)
+	{
+		game->doors[y][x].direction = 0;
+		game->doors[y][x].open = 1;
 	}
 }
 
