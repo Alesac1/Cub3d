@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/01 22:50:36 by dde-giov          #+#    #+#             */
+/*   Updated: 2024/05/01 23:21:24 by dde-giov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -8,7 +20,7 @@
 # include "mlx_linux/mlx.h"
 # include <sys/time.h>
 # include <math.h>
-#include <X11/Xlib.h>
+# include <X11/Xlib.h>
 // # include <X11/keysym.h>
 // # include <X11/X.h>
 
@@ -20,15 +32,14 @@
 # define WIDTH 256
 # define HEIGHT 256
 
-# define XK_w 119
-# define XK_a 97
-# define XK_s 115
-# define XK_d 100
-# define XK_Left 65361
-# define XK_Right 65363
-# define XK_up 65362
-# define XK_down 65364
-
+# define XK_W 119
+# define XK_A 97
+# define XK_S 115
+# define XK_D 100
+# define XK_LEFT 65361
+# define XK_RIGHT 65363
+# define XK_UP 65362
+# define XK_DOWN 65364
 
 typedef struct s_rgb
 {
@@ -94,7 +105,7 @@ typedef struct s_mlx
 	double			old_time;
 	int				init_w;
 	int				init_h;
-} 			t_mlx;
+}	t_mlx;
 
 typedef struct s_obj
 {
@@ -106,13 +117,13 @@ typedef struct s_obj
 	int				direction;
 }	t_obj;
 
-typedef struct s_walls 
+typedef struct s_walls
 {
 	double	camera_x;
-	double	ray_dir_x;
-	double	ray_dir_y;
-	int		map_x;
-	int		map_y;
+	double	ray_dx;
+	double	ray_dy;
+	int		mx;
+	int		my;
 	double	side_dist_x;
 	double	side_dist_y;
 	double	delta_x;
@@ -133,10 +144,10 @@ typedef struct s_walls
 	int		central;
 	float	c_x;
 	float	c_y;
-	int		c_side;
+	int		c_s;
 }	t_walls;
 
-typedef struct s_moves 
+typedef struct s_moves
 {
 	int				w;
 	int				s;
@@ -167,7 +178,7 @@ typedef struct s_game
 	struct s_rgb	floor_color;
 	struct s_rgb	ceiling_color;
 	struct s_spawn	spawn;
-	struct s_walls	walls_data;
+	struct s_walls	wall;
 	struct s_moves	moves;
 	struct s_obj	**doors;
 	struct s_mmap	mmap;
@@ -219,13 +230,13 @@ void				move_side(t_game *game);
 void				rotate_camera(t_game *game);
 void				set_pos(t_game *game);
 void				get_addresses(t_game *game);
-void 				take_spawn(t_game *game, char c, int y, int x);
+void				take_spawn(t_game *game, char c, int y, int x);
 void				render_things(t_game *game);
-void 				moving(t_game *game, float next_x, float next_y);
+void				moving(t_game *game, float next_x, float next_y);
 void				render_floor_ceiling(t_game *game);
 void				render_walls(t_game *game);
 void				door_matrix(t_game *game);
-void 			   	animation(t_game *game);
+void				animation(t_game *game);
 void				my_mlx_pixel_put(t_img *data, int x, int y, int color);
 void				check_distance(t_game *game, t_walls *data, char **map, int x);
 void				render_y(t_game	*game, t_mlx *mlx, int x);
@@ -238,6 +249,6 @@ void				freemmap(t_game *game);
 int					mouse_position(int x, int y, void *param);
 void				black_screen(t_game *game);
 void				move_release(t_game *game, int keycode);
-void					mmap_assign(t_game *game, int x, int y);
+void				mmap_assign(t_game *game, int x, int y);
 
 #endif

@@ -38,40 +38,40 @@ int	handle_keypress(int keycode, t_game *game)
 	if (keycode == 65307)
 		click_x(game);
 	handle_movement(keycode, game);
-	if (keycode == XK_Left)
+	if (keycode == XK_LEFT)
 	{
 		game->moves.l = 1;
 		game->moves.rot_speed = .05;
 	}
-	if (keycode == XK_Right)
+	if (keycode == XK_RIGHT)
 	{
 		game->moves.r = 1;
 		game->moves.rot_speed = -.05;
 	}
 	if (keycode == 101)
-		game->doors[(int)game->walls_data.c_y]
-		[(int)game->walls_data.c_x].direction = -1;
+		game->doors[(int)game->wall.c_y]
+		[(int)game->wall.c_x].direction = -1;
 	return (1);
 }
 
 void	handle_movement(int keycode, t_game *game)
 {
-	if (keycode == XK_w || keycode == XK_up)
+	if (keycode == XK_W || keycode == XK_UP)
 	{
 		game->moves.w = 1;
 		game->moves.move_speed = .05;
 	}
-	if (keycode == XK_a)
+	if (keycode == XK_A)
 	{
 		game->moves.a = 1;
 		game->moves.move_side_speed = .05;
 	}
-	if (keycode == XK_s || keycode == XK_down)
+	if (keycode == XK_S || keycode == XK_DOWN)
 	{
 		game->moves.s = 1;
 		game->moves.move_speed = -.05;
 	}
-	if (keycode == XK_d)
+	if (keycode == XK_D)
 	{
 		game->moves.d = 1;
 		game->moves.move_side_speed = -.05;
@@ -80,25 +80,25 @@ void	handle_movement(int keycode, t_game *game)
 
 void	move_release(t_game *game, int keycode)
 {
-	if (keycode == XK_w || keycode == XK_s || keycode == XK_up
-		|| keycode == XK_down)
+	if (keycode == XK_W || keycode == XK_S || keycode == XK_UP
+		|| keycode == XK_DOWN)
 		game->moves.move_speed = 0;
-	if (keycode == XK_d || keycode == XK_a)
+	if (keycode == XK_D || keycode == XK_A)
 		game->moves.move_side_speed = 0;
-	if (keycode == XK_w || keycode == XK_up)
+	if (keycode == XK_W || keycode == XK_UP)
 		game->moves.w = 0;
-	if (keycode == XK_s || keycode == XK_down)
+	if (keycode == XK_S || keycode == XK_DOWN)
 		game->moves.s = 0;
-	if (keycode == XK_d)
+	if (keycode == XK_D)
 		game->moves.d = 0;
-	if (keycode == XK_a)
+	if (keycode == XK_A)
 		game->moves.a = 0;
 	if (keycode == 113 || keycode == 114)
 		game->moves.rot_speed = 0;
-	if (keycode == XK_Left)
+	if (keycode == XK_LEFT)
 		game->moves.l = 0;
-	if (keycode == XK_Right)
+	if (keycode == XK_RIGHT)
 		game->moves.r = 0;
-	if (keycode == XK_Left || keycode == XK_Right)
+	if (keycode == XK_LEFT || keycode == XK_RIGHT)
 		game->moves.rot_speed = 0;
 }
