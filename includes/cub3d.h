@@ -6,7 +6,7 @@
 /*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:50:36 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/05/02 02:46:33 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/05/02 03:51:15 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_map
 	int				width;
 	char			*file_name;
 	int				allocated;
+	int				mmap_alloc;
 }					t_map;
 
 typedef struct s_spawn
@@ -255,5 +256,6 @@ void				black_screen(t_game *game);
 void				move_release(t_game *game, int keycode);
 void				mmap_assign(t_game *game, int x, int y);
 void				print_wall(t_game *game, t_walls *data, int x, int y);
+void				init_door(t_game *game, int i, int j);
 
 #endif

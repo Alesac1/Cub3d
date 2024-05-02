@@ -46,13 +46,15 @@ void	close_all(t_game *game, int r)
 	if (r != 3)
 		exit(0);
 	i = 0;
-	while (game->map[i])
+	while (i < game->p.height)
 	{
 		free(game->map[i]);
-		free(game->doors[i]);
+		if (game->p.mmap_alloc > 1)
+			free(game->doors[i]);
 		i++;
 	}
-	free(game->doors);
+	if (game->p.mmap_alloc)
+		free(game->doors);
 	free(game->map);
 	exit(0);
 }
