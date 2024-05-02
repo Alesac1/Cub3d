@@ -44,7 +44,7 @@ int	alloc_args(t_game *game, int *fd, int *map_counter)
 			line = next_line(&line, fd, map_counter);
 			continue ;
 		}
-		pop_args(line, game);
+		pop_args(line, game, *fd);
 		if (full_check(game))
 			break ;
 		free(line);
@@ -56,7 +56,7 @@ int	alloc_args(t_game *game, int *fd, int *map_counter)
 	return (1);
 }
 
-void	pop_args(char *line, t_game *game)
+void	pop_args(char *line, t_game *game, int fd)
 {
 	if (!ft_strncmp(line, "NO", 2) && game->p.n == DEFAULT)
 		game->p.n = ft_strtrim(line + 3, " \n");
@@ -73,6 +73,7 @@ void	pop_args(char *line, t_game *game)
 	else
 	{
 		free(line);
+		get_next_line(-fd);
 		print_error("Wrong map!\n", game, 1);
 	}
 	game->p.allocated++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfrancav & pfalasch <lfrancav@student.4    +#+  +:+       +#+        */
+/*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:10:39 by lfrancav &        #+#    #+#             */
-/*   Updated: 2024/03/08 18:10:40 by lfrancav &       ###   ########.fr       */
+/*   Updated: 2024/05/02 02:45:30 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@ char	*get_next_line(int fd)
 	char		*ret;
 
 	if (fd < 0 || fd > 256 || BUFFER_SIZE <= 0)
+	{
+		if (save[-fd])
+			free(save[-fd]);
 		return (NULL);
+	}
 	if (!save[fd])
 		save[fd] = ft_strdup("");
 	save[fd] = ft_read(fd, save[fd]);

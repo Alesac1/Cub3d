@@ -6,7 +6,7 @@
 /*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:50:36 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/05/01 23:51:41 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/05/02 02:46:33 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ void				pop_map(t_game *game, int *fd, int *map_counter);
 int					check_colors(t_game *game, char *color, t_rgb *colors);
 int					alloc_args(t_game *game, int *fd, int *map_counter);
 int					full_check(t_game *game);
-void				pop_args(char *line, t_game *game);
+void				pop_args(char *line, t_game *game, int fd);
 int					print_error(char *str, t_game *game, int i);
 void				init_struct(t_game *game);
 char				*next_line(char **line, int *fd, int *map_counter);
