@@ -24,7 +24,7 @@ int	handle_keyrelease(int keycode, t_game *game)
 		game->mlx.width *= 2;
 		game->mlx.height *= 2;
 	}
-	if (keycode == 91 && game->mlx.width / 2 >= 200)
+	if (keycode == 91 && game->mlx.width / 2 >= 400)
 	{
 		black_screen(game);
 		game->mlx.width /= 2;
