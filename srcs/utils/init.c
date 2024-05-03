@@ -98,6 +98,7 @@ void	init_struct(t_game *game)
 	game->p.height = DEFAULT;
 	game->p.allocated = 0;
 	game->p.mmap_alloc = 0;
+	game->spawn.direction = 'I';
 }
 
 //void	set_pos(t_game *game)

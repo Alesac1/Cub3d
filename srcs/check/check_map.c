@@ -112,7 +112,8 @@ void	check_borders(t_game *game, char **map, int i, int x)
 
 void	take_spawn(t_game *game, char c, int y, int x)
 {
-	if (c == 'W' || c == 'N' || c == 'S' || c == 'E')
+	if ((c == 'W' || c == 'N' || c == 'S' || c == 'E')
+		&& game->spawn.direction == 'I')
 	{
 		game->spawn.direction = c;
 		game->spawn.x = x;
