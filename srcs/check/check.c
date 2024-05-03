@@ -65,6 +65,8 @@ void	check_map(t_game *game, char **map)
 		x = 0;
 		i++;
 	}
+	if (game->spawn.direction == 'I')
+		print_error("Error! missing spawn point!\n", game, 3);
 }
 
 void	check_params(t_game *game)
