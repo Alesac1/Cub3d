@@ -33,6 +33,7 @@ void	set_vars(t_game *game)
 	game->moves.d = 0;
 	game->moves.l = 0;
 	game->moves.r = 0;
+	game->moves.open_all = 0;
 	game->mmap.size = 16;
 	game->mmap.width = game->mlx.width / 8;
 	game->mmap.sprite_size = game->mmap.width / game->mmap.size;

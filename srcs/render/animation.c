@@ -6,7 +6,7 @@
 /*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:34:34 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/05/01 21:57:14 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/05/03 03:02:53 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,15 @@ void	animation(t_game *game)
 		}
 		y++;
 	}
+	game->moves.open_all = 0;
 }
 
 void	door_anim(t_game *game, int x, int y)
 {
 	if (game->doors[y][x].door == 0)
 		return ;
+	if (game->moves.open_all == 1)
+		game->doors[y][x].direction = -1;
 	if (game->doors[y][x].direction == 1)
 		game->doors[y][x].open += 0.01;
 	else if (game->doors[y][x].direction == -1)

@@ -6,7 +6,7 @@
 /*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:50:36 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/05/02 03:51:15 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/05/03 03:00:53 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ typedef struct s_moves
 	double			move_speed;
 	double			move_side_speed;
 	double			rot_speed;
+	int				open_all;
 }	t_moves;
 
 typedef struct s_mmap

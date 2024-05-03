@@ -35,6 +35,7 @@ int	handle_keyrelease(int keycode, t_game *game)
 
 int	handle_keypress(int keycode, t_game *game)
 {
+	printf("keycode: %d\n", keycode);
 	if (keycode == 65307)
 		click_x(game);
 	handle_movement(keycode, game);
@@ -51,6 +52,8 @@ int	handle_keypress(int keycode, t_game *game)
 	if (keycode == 101)
 		game->doors[(int)game->wall.c_y]
 		[(int)game->wall.c_x].direction = -1;
+	if (keycode == 116)
+		game->moves.open_all = 1;
 	return (1);
 }
 
