@@ -65,12 +65,11 @@ void	check_up_down(t_game *game, char **map)
 	int	x;
 
 	i = 0;
-	x = 0;
-	while (map[i][x])
+	while (map[i])
 	{
-		if (i == 0 || i == game->p.height)
+		x = 0;
+		if (i == 0 || i == game->p.height - 1)
 		{
-			x = 0;
 			while (map[i][x])
 			{
 				if (map[i][x] == ' ' || map[i][x] == '1')
