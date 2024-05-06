@@ -59,17 +59,17 @@ int	alloc_args(t_game *game, int *fd, int *map_counter)
 void	pop_args(char *line, t_game *game, int fd)
 {
 	if (!ft_strncmp(line, "NO", 2) && game->p.n == DEFAULT)
-		game->p.n = ft_strtrim(line + 3, " \n");
+		game->p.n = ft_strtrim(line + 2, " \n");
 	else if (!ft_strncmp(line, "EA", 2) && game->p.e == DEFAULT)
-		game->p.e = ft_strtrim(line + 3, " \n");
+		game->p.e = ft_strtrim(line + 2, " \n");
 	else if (!ft_strncmp(line, "SO", 2) && game->p.s == DEFAULT)
-		game->p.s = ft_strtrim(line + 3, " \n");
+		game->p.s = ft_strtrim(line + 2, " \n");
 	else if (!ft_strncmp(line, "WE", 2) && game->p.w == DEFAULT)
-		game->p.w = ft_strtrim(line + 3, " \n");
+		game->p.w = ft_strtrim(line + 2, " \n");
 	else if (!ft_strncmp(line, "C", 1) && game->p.cealing == DEFAULT)
-		game->p.cealing = ft_strtrim(line + 2, " \n");
+		game->p.cealing = ft_strtrim(line + 1, " \n");
 	else if (!ft_strncmp(line, "F", 1) && game->p.floor == DEFAULT)
-		game->p.floor = ft_strtrim(line + 2, " \n");
+		game->p.floor = ft_strtrim(line + 1, " \n");
 	else
 	{
 		free(line);

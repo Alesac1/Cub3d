@@ -15,7 +15,7 @@ CYAN := \033[1;36m
 # LIBFT
 LIBFT = ./includes/libft/libft.a
 
-NAME := cub3d
+NAME := cub3D
 
 SRCS := srcs/main.c \
 		srcs/check/check_args.c \
