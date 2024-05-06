@@ -56,7 +56,6 @@ void	check_left_right(t_game *game, char **map)
 		i++;
 	}
 	check_right(game, map);
-
 }
 
 void	check_up_down(t_game *game, char **map)

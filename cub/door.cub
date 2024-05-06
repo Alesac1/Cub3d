@@ -1,7 +1,7 @@
-NO ./wood.xpm
-SO ./wood.xpm
-WE ./wood.xpm
-EA ./wood.xpm
+NO ./textures/wood.xpm
+SO ./textures/wood.xpm
+WE ./textures/wood.xpm
+EA ./textures/wood.xpm
 
 
 C      147, 150, 148
