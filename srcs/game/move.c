@@ -59,11 +59,11 @@ int	mouse_position(int x, int y, void *param)
 	double	fov_factor;
 
 	game = (t_game *)param;
-	fov_factor = (x - game->mlx.width) * 0.005;
-	game->mlx.dir_x = sin(fov_factor);
-	game->mlx.dir_y = cos(fov_factor);
-	game->mlx.plane_x = -cos(fov_factor);
-	game->mlx.plane_y = sin(fov_factor);
+	fov_factor = (x - game->mlx.width / 4) * 0.005;
+	game->mlx.dir_x = cos(fov_factor);
+	game->mlx.dir_y = sin(fov_factor);
+	game->mlx.plane_x = sin(fov_factor);
+	game->mlx.plane_y = -cos(fov_factor);
 	return (0);
 }
 
