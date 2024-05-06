@@ -56,12 +56,10 @@ void	moving(t_game *game, float next_x, float next_y)
 int	mouse_position(int x, int y, void *param)
 {
 	t_game	*game;
-	int		half_width;
 	double	fov_factor;
 
 	game = (t_game *)param;
-	half_width = game->mlx.width / 2;
-	fov_factor = (x - half_width) * 0.005;
+	fov_factor = (x - game->mlx.width) * 0.005;
 	game->mlx.dir_x = sin(fov_factor);
 	game->mlx.dir_y = cos(fov_factor);
 	game->mlx.plane_x = -cos(fov_factor);
