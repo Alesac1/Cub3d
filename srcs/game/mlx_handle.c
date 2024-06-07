@@ -15,7 +15,7 @@
 int	handle_keyrelease(int keycode, t_game *game)
 {
 	move_release(game, keycode);
-	if (keycode == 45 && game->mmap.size <= 16)
+	if (keycode == 45 && game->mmap.size <= 8)
 		game->mmap.size *= 2;
 	if (keycode == 61 && game->mmap.size > 4)
 		game->mmap.size /= 2;
