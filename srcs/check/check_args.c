@@ -76,7 +76,6 @@ void	pop_args(char *line, t_game *game, int fd)
 		get_next_line(-fd);
 		print_error("Wrong map!\n", game, 1);
 	}
-	game->p.allocated++;
 }
 
 int	full_check(t_game *game)
@@ -97,7 +96,7 @@ char	*skip_empty_lines(t_game *game, char *line, int *fd, int *map_counter)
 	(*map_counter)++;
 	while (line && line[0] == '\n')
 		line = next_line(&line, fd, map_counter);
-	if (line[0] == '\0')
-		print_error("Error! Wrong map!\n", game, 3);
+	if (!line || line[0] == '\0')
+		print_error("Error! Wrong map!\n", game, 0);
 	return (line);
 }

@@ -85,17 +85,19 @@ int	check_colors(t_game *game, char *color, t_rgb *colors)
 	while (rgb[i])
 		i++;
 	if (i != 3)
-		print_error("Error! Wrong Colors!\n", game, 0);
+	{
+		free(rgb);
+		return (1);
+	}
 	colors->r = ft_atoi(rgb[0]);
 	colors->g = ft_atoi(rgb[1]);
 	colors->b = ft_atoi(rgb[2]);
-	if (colors->r < 0 || colors->r > 255
-		|| colors->g < 0 || colors->g > 255
-		|| colors->b < 0 || colors->b > 255)
-		print_error("Error! Wrong Colors!\n", game, 0);
+	if (colors->r < 0 || colors->r > 255 || colors->g < 0
+		|| colors->g > 255 || colors->b < 0 || colors->b > 255)
+		i = 0;
 	colors->hex = colors->r;
 	colors->hex = (colors->hex << 8) + colors->g;
 	colors->hex = (colors->hex << 8) + colors->b;
 	free_rgb(rgb);
-	return (1);
+	return (i);
 }

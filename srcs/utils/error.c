@@ -19,8 +19,9 @@ int	print_error(char *str, t_game *game, int i)
 	return (0);
 }
 
-void	invalid_map_error(t_game *game, char *line)
+void	invalid_map_error(t_game *game, char *line, int fd)
 {
 	free (line);
-	print_error ("Error! Invalid Map!\n", game, 0);
+	get_next_line(-fd);
+	print_error ("Error! Invalid Map!\n", game, 3);
 }

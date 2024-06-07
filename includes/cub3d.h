@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: dde-giov <dde-giov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 22:50:36 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/05/06 16:27:22 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/06/07 16:59:27 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,7 @@ char				*skip_empty_lines(t_game *game, char *line, int *fd,
 						int *map_counter);
 char				*alloc_mtx(t_game *game, char *line, int *fd,
 						int *map_counter);
-void				invalid_map_error(t_game *game, char *line);
+void				invalid_map_error(t_game *game, char *line, int fd);
 char				*realloc_line(char *line, int width);
 void				realloc_map(t_game *game);
 void				check_left_right(t_game *game, char **map);

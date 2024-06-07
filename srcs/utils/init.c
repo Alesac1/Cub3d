@@ -79,7 +79,7 @@ void	init_mlx(t_game *game)
 		0, 0);
 }
 
-	//render_things(game);
+//render_things(game);
 void	init_game(t_game *game)
 {
 	set_vars(game);

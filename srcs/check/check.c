@@ -37,9 +37,9 @@ void	pop_map(t_game *game, int *fd, int *map_counter)
 			break ;
 		i++;
 	}
-	close(*fd);
 	if (line && line[0] == '\n')
-		invalid_map_error(game, line);
+		invalid_map_error(game, line, *fd);
+	close(*fd);
 }
 
 void	check_map(t_game *game, char **map)
@@ -73,8 +73,9 @@ void	check_params(t_game *game)
 {
 	if (!full_check(game))
 		print_error("Error! wrong map!\n", game, 3);
-	check_colors(game, game->p.cealing, &game->ceiling_color);
-	check_colors(game, game->p.floor, &game->floor_color);
+	if (!check_colors(game, game->p.cealing, &game->ceiling_color)
+		|| !check_colors(game, game->p.floor, &game->floor_color))
+		print_error("Error! Wrong color!\n", game, 0);
 }
 
 char	*next_line(char **line, int *fd, int *map_counter)
