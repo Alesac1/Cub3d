@@ -38,8 +38,6 @@ char	*realloc_line(char *line, int width)
 	int		i;
 
 	i = 0;
-	// if (ft_empty(line))
-	// 	exit(0);
 	new_line = malloc(sizeof(char) * (width + 1));
 	while (line[i] && line[i] != '\n')
 	{

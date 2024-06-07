@@ -18,7 +18,6 @@ int	main(int argc, char const *argv[])
 	t_game	game;
 
 	check_args(&game, argc, argv, &fd);
-	// print_struct(&game);
 	init_game(&game);
 	start_game(&game);
 	close_all(&game, 3);
