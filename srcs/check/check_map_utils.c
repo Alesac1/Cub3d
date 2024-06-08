@@ -86,8 +86,10 @@ int	check_colors(t_game *game, char *color, t_rgb *colors)
 		i++;
 	if (i != 3)
 	{
+		while (--i >= 0)
+			free(rgb[i]);
 		free(rgb);
-		return (1);
+		return (0);
 	}
 	colors->r = ft_atoi(rgb[0]);
 	colors->g = ft_atoi(rgb[1]);

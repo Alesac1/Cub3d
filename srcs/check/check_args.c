@@ -51,8 +51,8 @@ int	alloc_args(t_game *game, int *fd, int *map_counter)
 		line = get_next_line(*fd);
 		(*map_counter)++;
 	}
-	check_params(game);
 	free(line);
+	check_params(game, *fd);
 	return (1);
 }
 

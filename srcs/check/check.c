@@ -69,13 +69,19 @@ void	check_map(t_game *game, char **map)
 		print_error("Error! missing spawn point!\n", game, 3);
 }
 
-void	check_params(t_game *game)
+void	check_params(t_game *game, int fd)
 {
 	if (!full_check(game))
+	{
+		get_next_line(-fd);
 		print_error("Error! wrong map!\n", game, 3);
+	}
 	if (!check_colors(game, game->p.cealing, &game->ceiling_color)
 		|| !check_colors(game, game->p.floor, &game->floor_color))
+	{
+		get_next_line(-fd);
 		print_error("Error! Wrong color!\n", game, 0);
+	}
 }
 
 char	*next_line(char **line, int *fd, int *map_counter)
