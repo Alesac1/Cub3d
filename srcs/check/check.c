@@ -74,7 +74,7 @@ void	check_params(t_game *game, int fd)
 	if (!full_check(game))
 	{
 		get_next_line(-fd);
-		print_error("Error! wrong map!\n", game, 3);
+		print_error("Error! wrong map!\n", game, 0);
 	}
 	if (!check_colors(game, game->p.cealing, &game->ceiling_color)
 		|| !check_colors(game, game->p.floor, &game->floor_color))
