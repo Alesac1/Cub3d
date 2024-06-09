@@ -18,14 +18,14 @@ void	check_args(t_game *game, int argc, const char **argv, int *fd)
 
 	map_counter = 0;
 	if (argc != 2 || check_exts((char *)argv[1]))
-		print_error("Error! invalid or missing map!\n", game, 0);
+		print_error("Error\n invalid or missing map!\n", game, 0);
 	game->p.file_name = ft_strdup((char *)argv[1]);
 	*fd = open(game->p.file_name, O_RDONLY);
 	if (*fd == -1)
-		print_error("Error! Wrong path!\n", game, 0);
+		print_error("Error\n Wrong path!\n", game, 0);
 	init_struct(game);
 	if (!alloc_args(game, fd, &map_counter))
-		print_error("missing map instructions!\n", game, 0);
+		print_error("Error\nMissing map instructions!\n", game, 0);
 	pop_map(game, fd, &map_counter);
 	check_map(game, game->map);
 	door_matrix(game);
@@ -74,7 +74,7 @@ void	pop_args(char *line, t_game *game, int fd)
 	{
 		free(line);
 		get_next_line(-fd);
-		print_error("Wrong map!\n", game, 1);
+		print_error("Error\n Wrong map!\n", game, 1);
 	}
 }
 
@@ -97,6 +97,6 @@ char	*skip_empty_lines(t_game *game, char *line, int *fd, int *map_counter)
 	while (line && line[0] == '\n')
 		line = next_line(&line, fd, map_counter);
 	if (!line || line[0] == '\0')
-		print_error("Error! Wrong map!\n", game, 0);
+		print_error("Error\n Wrong map!\n", game, 0);
 	return (line);
 }

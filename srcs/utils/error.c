@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   Error\nc                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asacchin <asacchin@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -23,5 +23,5 @@ void	invalid_map_error(t_game *game, char *line, int fd)
 {
 	free (line);
 	get_next_line(-fd);
-	print_error ("Error! Invalid Map!\n", game, 3);
+	print_error ("Error\n Invalid Map!\n", game, 3);
 }

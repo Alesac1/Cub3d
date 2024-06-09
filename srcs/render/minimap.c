@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: dde-giov <dde-giov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 03:51:46 by dde-giov          #+#    #+#             */
-/*   Updated: 2024/05/01 22:44:45 by dde-giov         ###   ########.fr       */
+/*   Updated: 2024/06/09 21:42:04 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	initminimap(t_game *game)
 			&game->mmap.mmap.endian);
 	game->mmap.map = (char **)malloc(sizeof(char *) * (game->mmap.size + 1));
 	if (!game->mmap.map)
-		print_error("Error! Malloc failed!\n", game, 0);
+		print_error("Error\n Malloc failed!\n", game, 0);
 	while (i < (game->mmap.size + 1))
 	{
 		game->mmap.map[i] = (char *)malloc(sizeof(char)
 				* (game->mmap.size + 1));
 		if (!game->mmap.map[i])
-			print_error("Error! Malloc failed!\n", game, 0);
+			print_error("Error\n Malloc failed!\n", game, 0);
 		i++;
 	}
 	create_minimap(game);
