@@ -48,25 +48,30 @@ void	load_imgs(t_game *game)
 	z = 64;
 	game->mlx.ea.img = mlx_xpm_file_to_image(game->mlx.mlx, game->p.e, &r, &z);
 	if (!game->mlx.ea.img)
-		print_error("Error\n Invalid textures.\n", game, 0);
+		print_error("Error\n Invalid textures.\n", game, 6);
 	game->mlx.so.img = mlx_xpm_file_to_image(game->mlx.mlx, game->p.s, &r, &z);
 	if (!game->mlx.so.img)
-		print_error("Error\n Invalid textures.\n", game, 0);
+		print_error("Error\n Invalid textures.\n", game, 6);
 	game->mlx.we.img = mlx_xpm_file_to_image(game->mlx.mlx, game->p.w, &r, &z);
 	if (!game->mlx.we.img)
-		print_error("Error\n Invalid textures.\n", game, 0);
+		print_error("Error\n Invalid textures.\n", game, 6);
 	game->mlx.no.img = mlx_xpm_file_to_image(game->mlx.mlx, game->p.n, &r, &z);
 	if (!game->mlx.no.img)
-		print_error("Error\n Invalid textures.\n", game, 0);
+		print_error("Error\n Invalid textures.\n", game, 6);
 	game->mlx.door.img = mlx_xpm_file_to_image(game->mlx.mlx,
 			"./textures/door.xpm", &r, &z);
 	if (!game->mlx.door.img)
-		print_error("Error\n Invalid textures.\n", game, 0);
+		print_error("Error\n Invalid textures.\n", game, 6);
 	get_addresses(game);
 }
 
 void	init_mlx(t_game *game)
 {
+	game->mlx.ea.img = NULL;
+	game->mlx.so.img = NULL;
+	game->mlx.we.img = NULL;
+	game->mlx.no.img = NULL;
+	game->mlx.door.img = NULL;
 	game->mlx.mlx = mlx_init();
 	game->mlx.img.img
 		= mlx_new_image(game->mlx.mlx, game->mlx.width, game->mlx.height);

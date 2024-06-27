@@ -60,14 +60,22 @@ void	close_all(t_game *game, int r)
 
 int	click_x(t_game *game)
 {
-	mlx_destroy_image(game->mlx.mlx, game->mlx.no.img);
-	mlx_destroy_image(game->mlx.mlx, game->mlx.so.img);
-	mlx_destroy_image(game->mlx.mlx, game->mlx.we.img);
-	mlx_destroy_image(game->mlx.mlx, game->mlx.ea.img);
-	mlx_destroy_image(game->mlx.mlx, game->mlx.door.img);
-	mlx_destroy_image(game->mlx.mlx, game->mlx.img.img);
-	mlx_destroy_window(game->mlx.mlx, game->mlx.window);
-	mlx_destroy_display(game->mlx.mlx);
+	if (game->mlx.no.img)
+		mlx_destroy_image(game->mlx.mlx, game->mlx.no.img);
+	if (game->mlx.so.img)
+		mlx_destroy_image(game->mlx.mlx, game->mlx.so.img);
+	if (game->mlx.we.img)
+		mlx_destroy_image(game->mlx.mlx, game->mlx.we.img);
+	if (game->mlx.ea.img)
+		mlx_destroy_image(game->mlx.mlx, game->mlx.ea.img);
+	if (game->mlx.door.img)
+		mlx_destroy_image(game->mlx.mlx, game->mlx.door.img);
+	if (game->mlx.img.img)
+		mlx_destroy_image(game->mlx.mlx, game->mlx.img.img);
+	if (game->mlx.window)
+		mlx_destroy_window(game->mlx.mlx, game->mlx.window);
+	if (game->mlx.mlx)
+		mlx_destroy_display(game->mlx.mlx);
 	close_all(game, 3);
 	return (0);
 }

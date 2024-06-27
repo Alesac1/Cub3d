@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Error\nc                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asacchin <asacchin@student.42roma.it>      +#+  +:+       +#+        */
+/*   By: dde-giov <dde-giov@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/02 19:14:53 by asacchin          #+#    #+#             */
-/*   Updated: 2024/04/02 19:14:53 by asacchin         ###   ########.fr       */
+/*   Created: 2024/06/27 14:09:35 by dde-giov          #+#    #+#             */
+/*   Updated: 2024/06/27 14:09:35 by dde-giov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 int	print_error(char *str, t_game *game, int i)
 {
 	ft_putstr_fd (str, 2);
-	close_all (game, i);
+	if (i == 6)
+		click_x(game);
+	else
+		close_all (game, i);
 	return (0);
 }
 
